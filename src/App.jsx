@@ -16,6 +16,7 @@ import RoleManagementPage from './pages/RoleManagementPage';
 import OrderSupplierPage from './pages/OrderSupplierPage';
 import CashierPage from './pages/CashierPage';
 import StockPage from './pages/StockPage';
+import CourierPage from './pages/CourierPage';
 
 const  App = () => {  
   
@@ -37,6 +38,7 @@ const  App = () => {
           <Route path="/orders" element={<OrderSupplierPage/>} />
           <Route path="/cashier" element={<CashierPage/>} />
           <Route path="/stocks" element={<StockPage/>} />
+          <Route path="/couriers" element={<CourierPage/>} />
         </Routes>
       </div>
     )

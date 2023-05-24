@@ -66,6 +66,14 @@ const SideBar = () =>
                         <span className="sidebar-text">Pesan ke supplier</span>
                     </a>
                 </li>
+                <li className="nav-item">
+                    <a href="/couriers" className="nav-link">
+                        <span className="sidebar-icon">
+                            <ImCreditCard/>
+                        </span>
+                        <span className="sidebar-text">Kurir</span>
+                    </a>
+                </li>
 
               <li className="nav-item">
                   <span className="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#page_content">
