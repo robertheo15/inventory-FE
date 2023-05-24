@@ -15,6 +15,7 @@ import ProfilePage from './pages/ProfilePage';
 import RoleManagementPage from './pages/RoleManagementPage';
 import OrderSupplierPage from './pages/OrderSupplierPage';
 import CashierPage from './pages/CashierPage';
+import StockPage from './pages/StockPage';
 
 const  App = () => {  
   
