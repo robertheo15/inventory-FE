@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 // import '../assets/css/volt.css'
 import title from '../utils/title';
-import LoginForm from '../components/form/LoginForm';
-const LoginPage = () => {
+import ForgetForm from '../components/form/ForgetForm';
+const ForgetPasswordPage = () => {
 
     useEffect(() => {
-        document.title = title.login;
+        document.title = title.forgetPassword;
       }, []);
 
   return (
@@ -15,10 +15,9 @@ const LoginPage = () => {
           <div className="col-12 d-flex align-items-center justify-content-center">
             <div className="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
               <div className="text-center text-md-center mb-4 mt-md-0">
-                <h1 className="mb-0 h3">Masuk ke Aplikasi Inventory</h1>
+                <h1 className="mb-0 h3">Lupa password</h1>
               </div>
-
-              <LoginForm/>
+              <ForgetForm/>
             </div>
           </div>
         </div>
@@ -27,4 +26,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage;
+export default ForgetPasswordPage;
