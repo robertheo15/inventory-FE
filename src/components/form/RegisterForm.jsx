@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import EmailInput from '../input/EmailInput';
 import PasswordInput from '../input/PasswordInput';
-
+import label from '../../utils/label'
+import button from '../../utils/button'
+import FullNameInput from '../input/FullNameInput';
+import AddressInput from '../input/AddressInput';
+import PhoneInput from '../input/PhoneInput';
 const RegisterForm = () => {
 
   return (
@@ -9,14 +13,15 @@ const RegisterForm = () => {
       <div className="alert alert-danger" role="alert">
           <p>asd</p>
       </div>
-      <EmailInput/>
-      <PasswordInput/>
-                
-      <div className="d-flex justify-content-between align-items-top mb-4">
-        <div><a href="./forgot-password.html" className="small text-right">Lost password?</a></div>
-      </div>
+      <EmailInput label={label.emailInput}/>
+      <PasswordInput label={label.passwordInput}/>
+      <PasswordInput label={label.confirmationPassword}/>
+      <FullNameInput label={label.fullNameInput}/>
+      <AddressInput label={label.addressInput}/>
+      <PhoneInput label={label.phoneInput}/>
+              
       <div className="d-grid">
-        <button type="submit" className="btn btn-gray-800">Sign in</button>
+        <button type="submit" className="btn btn-gray-800">{button.registerButton}</button>
       </div>
     </form>
   );

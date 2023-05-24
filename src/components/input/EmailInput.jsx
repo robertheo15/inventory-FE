@@ -1,9 +1,9 @@
 import React from 'react';
 
-const EmailInput = () => {
+const EmailInput = ({label}) => {
   return (
     <div className="form-group mb-4">
-      <label for="email">Your Email</label>
+      <label for="email">{label}</label>
       <div className="input-group">
         <span className="input-group-text" id="basic-addon1">
           <svg className="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -11,7 +11,7 @@ const EmailInput = () => {
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
           </svg>
         </span>
-        <input type="email" className="form-control" placeholder="Enter a valid email address" id="email" name="email" required autofocus/>
+        <input type="email" className="form-control" placeholder="Masukan alamat email" id="email" name="email" required autofocus/>
       </div>
     </div>
   ); 
