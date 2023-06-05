@@ -3,7 +3,7 @@ import React from 'react';
 const EmailInput = ({label}) => {
   return (
     <div className="form-group mb-4">
-      <label for="email">{label}</label>
+      <label htmlFor="email">{label}</label>
       <div className="input-group">
         <span className="input-group-text" id="basic-addon1">
           <svg className="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

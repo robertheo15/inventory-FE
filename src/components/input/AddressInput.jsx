@@ -4,7 +4,7 @@ const AddressInput = ({label}) => {
   return (
     <div className="form-group">
       <div className="form-group mb-4">
-        <label for="address">{ label }</label>
+        <label htmlFor="address">{ label }</label>
         <div className="input-group">
           <span className="input-group-text" id="basic-addon2">
             <svg className="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
