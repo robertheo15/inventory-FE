@@ -17,6 +17,7 @@ import OrderSupplierPage from './pages/OrderSupplierPage';
 import CashierPage from './pages/CashierPage';
 import StockPage from './pages/StockPage';
 import CourierPage from './pages/CourierPage';
+import AddCartPage from './pages/AddCartPage';
 
 const  App = () => {  
   
@@ -39,6 +40,7 @@ const  App = () => {
           <Route path="/cashier" element={<CashierPage/>} />
           <Route path="/stocks" element={<StockPage/>} />
           <Route path="/couriers" element={<CourierPage/>} />
+          <Route path="/carts" element={<AddCartPage/>} />
         </Routes>
       </div>
     )
