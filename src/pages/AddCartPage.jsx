@@ -2,9 +2,9 @@ import React from 'react'
 import SideBar from '../components/navigation/SideBar'
 import TopNavigation from '../components/Navigation/TopNavigation'
 import Footer from '../components/navigation/Footer'
-import ModalCart from '../components/modals/ModalCart'
-import ModalPreview from '../components/modals/ModalPreview'
-import TableTransactions from '../components/tables/TableTransactions'
+import ModalCart from '../components/Modals/ModalCart'
+import ModalPreview from '../components/Modals/ModalPreview'
+import TableTransactions from '../components/Tables/TableTransactions'
 import {Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function AddCartPage() {
