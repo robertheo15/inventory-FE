@@ -11,7 +11,6 @@ const ModalItem = () => {
             </div>
             <div className="modal-body">
             
-
                 <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
                 <div className="table-responsive">
                     <table id="myTable" className="table table-striped" style={{ width:'100%' }}>
