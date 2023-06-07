@@ -9,7 +9,7 @@ import ForgetPasswordPage from './pages/ForgetPasswordPage';
 import ResetPassword from './pages/ResetPassword';
 import ExpensePage from './pages/ExpensePage';
 
-import './styles/volt.css';
+import '../src/styles/volt.css'
 import SalesPage from './pages/SalesPage';
 import ProfilePage from './pages/ProfilePage';
 import RoleManagementPage from './pages/RoleManagementPage';
@@ -18,6 +18,7 @@ import CashierPage from './pages/CashierPage';
 import StockPage from './pages/StockPage';
 import CourierPage from './pages/CourierPage';
 import AddCartPage from './pages/AddCartPage';
+import ProductsPage from './pages/ProductsPage';
 
 const  App = () => {  
   
@@ -41,6 +42,7 @@ const  App = () => {
           <Route path="/stocks" element={<StockPage/>} />
           <Route path="/couriers" element={<CourierPage/>} />
           <Route path="/carts" element={<AddCartPage/>} />
+          <Route path="/products" element={<ProductsPage/>} />
         </Routes>
       </div>
     )

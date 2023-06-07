@@ -3,7 +3,7 @@ import React from 'react'
 export default function ModalCart() {
   return (
     <div className="modal fade" id="modalCart" tabIndex="-1" aria-labelledby="modalCartLabel" aria-hidden="true">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-xl">
             <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title" id="modalCartLabel">Cashier Carts</h5>
@@ -45,6 +45,7 @@ export default function ModalCart() {
                         <th scope="col">Product</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,42 +54,105 @@ export default function ModalCart() {
                         <td>Snack</td>
                         <td>1</td>
                         <td>Rp 45.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Bread</td>
                         <td>2</td>
                         <td>Rp 35.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Soap</td>
                         <td>3</td>
                         <td>Rp 20.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Bread</td>
                         <td>2</td>
                         <td>Rp 35.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Soap</td>
                         <td>3</td>
                         <td>Rp 20.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Bread</td>
                         <td>2</td>
                         <td>Rp 35.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Soap</td>
                         <td>3</td>
                         <td>Rp 20.000</td>
+                        <td>
+                            <button type="submit" className="btn btn-danger mx-1">
+                            <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                            <i className="bi bi-pencil-square"></i>
+                            </button>
+                            {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
+                        </td>
                     </tr>
                     </tbody>
                 </table>
