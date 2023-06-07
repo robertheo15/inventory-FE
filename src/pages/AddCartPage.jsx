@@ -7,7 +7,7 @@ import ModalPreview from '../components/Modals/ModalPreview'
 import TableTransactions from '../components/Tables/TableTransactions'
 import {Helmet, HelmetProvider } from "react-helmet-async";
 
-export default function AddCartPage() {
+const AddCartPage = () => {
   return (
     <>
     <SideBar/>
@@ -86,3 +86,5 @@ export default function AddCartPage() {
   </>
   )
 }
+
+export default AddCartPage
