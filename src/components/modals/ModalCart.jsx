@@ -30,13 +30,14 @@ export default function ModalCart() {
                     <input type="text" className="form-control" id="inputTitle3"/>
                 </div>
                 </div>
-                <div className="mb-3 row">
-                    <button type="button" className="btn btn-primary">
+                <div className="mb-3 row px-3">
+                    <button type="button" className="btn btn-primary ms-auto" style={{ width: 'fit-content' }}>
                         Add to Cart
                     </button>
                 </div>
                 {/* End Fill Input Modals */}
 
+                {/* Cashier Cart Table | Option Delete! */}
                 <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
                 <table className="table table-bordered">
                     <thead>
@@ -157,6 +158,7 @@ export default function ModalCart() {
                     </tbody>
                 </table>
                 </div>
+                {/* End Cashier Cart Table | Option Delete! */}
 
             </div>
 
