@@ -10,47 +10,90 @@ const ModalProducts = () => {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-            
 
-                <div style={{ maxHeight: '250px', overflowY: 'scroll' }}>
-                <div className="table-responsive">
-                    <table id="myTable" className="table table-striped" style={{ width:'100%' }}>
-                        <thead>
-                            <tr>
-                            <th>No</th>
-                            <th>Product</th>
-                            <th>Total</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>1</td>
-                            <td>asd</td>
-                            <td>asd</td>
-                            <td>asd</td>
-                            
-                            <td >
-                                <button type="submit" className="btn btn-danger mx-1">
-                                    -
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                 +
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {/* Fill Input Modals */}
+
+                {/* Name */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputNama" className="col-sm-2 col-form-label">Nama</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" id="inputNama"/>
                     </div>
                 </div>
+
+                {/* Brand */}
+                <div className="mb-3 row">
+                <label htmlFor="inputBrabnd" className="col-sm-2 col-form-label">Brand</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" id="inputBrabnd"/>
+                </div>
+                </div>
+
+                {/* Stock */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputDescription" className="col-sm-2 col-form-label">Description</label>
+                    <div className="col-sm-10">
+                        <input type="number" min={0} className="form-control" id="inputDescription"/>
+                    </div>
+                </div>
+
+                {/* Base Price */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputBasePrice" className="col-sm-2 col-form-label">Base Price</label>
+                    <div className="col-sm-10">
+                        <input type="number" min={0} className="form-control" id="inputBasePrice"/>
+                    </div>
+                </div>
+
+                {/* Price Eceran */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputPriceEceran" className="col-sm-2 col-form-label">Price Eceran</label>
+                    <div className="col-sm-10">
+                        <input type="number" min={0} className="form-control" id="inputPriceEceran"/>
+                    </div>
+                </div>
+
+                {/* Price Grosir */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputPriceGrosir" className="col-sm-2 col-form-label">Price Grosir</label>
+                    <div className="col-sm-10">
+                        <input type="number" min={0} className="form-control" id="inputPriceGrosir"/>
+                    </div>
+                </div>
+
+                {/* Image */}
+                <div className="mb-3 row">
+                    <label htmlFor="inputImage" className="col-sm-2 col-form-label">Image</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" id="inputImage"/>
+                    </div>
+                </div>
+
+                {/* Type */}
+                <div className="mb-3 row">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="productType">Type</label>
+                            </div>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="productType">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* End Fill Input Modals */}
 
             </div>
 
             <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" className="btn btn-primary">Add</button>
+                <button type="button" className="btn btn-primary">Add to Cart</button>
             </div>
             </div>
         </div>
