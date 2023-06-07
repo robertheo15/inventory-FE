@@ -32,7 +32,7 @@ const ProductsPage = () => {
             {/* Modal Products */}
             <ModalProducts/>
 
-            {/* Modal Item */}
+            {/* Modal Item List */}
             <ModalItem/>
 
           <Footer/>
