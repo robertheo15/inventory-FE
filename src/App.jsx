@@ -19,6 +19,7 @@ import StockPage from './pages/StockPage';
 import CourierPage from './pages/CourierPage';
 import AddCartPage from './pages/AddCartPage';
 import ProductsPage from './pages/ProductsPage';
+import InvoicePage from './pages/InvoicePage';
 
 const  App = () => {  
   
@@ -43,6 +44,7 @@ const  App = () => {
           <Route path="/couriers" element={<CourierPage/>} />
           <Route path="/carts" element={<AddCartPage/>} />
           <Route path="/products" element={<ProductsPage/>} />
+          <Route path="/invoice" element={<InvoicePage/>} />
         </Routes>
       </div>
     )

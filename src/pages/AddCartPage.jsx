@@ -49,6 +49,11 @@ const AddCartPage = () => {
               <div className="col-12 col-lg-6 order-1 order-lg-2 text-end d-flex flex-column align-items-end justify-content-end">
                 <h6>Total Price</h6>
                 <h4><b>Rp. 150.000</b></h4>
+
+                  {/* Button Checkout */}
+                  <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCart">
+                          Checkout
+                    </button>
               </div>
               
             </div>
