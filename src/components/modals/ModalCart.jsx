@@ -1,6 +1,10 @@
 import React from 'react'
+import useProducts from '../../hooks/useProducts';
 
-const ModalCart = () => {
+const ModalCart = ({transactionChildState, onTransactionChild, transactionDetailsState, onTransactionDetail}) => {
+    const { products } = useProducts();
+    let resProduct = products.data;
+    console.log(transactionDetailsState);
     return (
         <div className="modal fade" id="modalCart" tabIndex="-1" aria-labelledby="modalCartLabel" aria-hidden="true">
             <div className="modal-dialog modal-xl">
@@ -13,21 +17,59 @@ const ModalCart = () => {
     
                     {/* Fill Input Modals */}
                     <div className="mb-3 row">
-                    <label htmlFor="inputTitle1" className="col-sm-2 col-form-label">Title1:</label>
+                    <label htmlFor="inputTitle1" className="col-sm-2 col-form-label">Produk:</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputTitle1"/>
+                    <select className="form-control" id="productType" onChange={e => {
+                                onTransactionDetail({ ...transactionDetailsState, product: e.target.value });
+                            }}>
+                            <option value={""}>Pilih produk</option>
+                      {  
+                        (resProduct != undefined ? 
+                          (resProduct.map((product, key) => (
+                            
+                            <option key={key} value={ product } 
+                              >{product.name}</option>
+        
+                          )))
+                         : "")
+                      }             
+                      </select>
+                        {/* <input type="text" className="form-control" id="inputTitle1"/> */}
                     </div>
                     </div>
                     <div className="mb-3 row">
-                    <label htmlFor="inputTitle2" className="col-sm-2 col-form-label">Title2:</label>
+                    <label htmlFor="inputTitle2" className="col-sm-2 col-form-label">Jumlah:</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputTitle2"/>
+                        <input type="number" className="form-control" id="inputTitle2" 
+                            value={transactionDetailsState.qty}
+                            onChange={e => {
+                                onTransactionDetail({ ...transactionDetailsState, qty: e.target.value });
+                            }}
+                        />
                     </div>
                     </div>
                     <div className="mb-3 row">
-                    <label htmlFor="inputTitle3" className="col-sm-2 col-form-label">Title3:</label>
+                    <label htmlFor="inputTitle3" className="col-sm-2 col-form-label">Tipe harga:</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputTitle3"/>
+                        <select className="form-control">
+                            <option value={""}>Pilih tipe harga</option>
+                            <option value={"grosir"}>Grosir</option>
+                            <option value={"eceran"}>Eceran</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div className="mb-3 row">
+                    <label htmlFor="inputTitle3" className="col-sm-2 col-form-label">Metode:</label>
+                    <div className="col-sm-10">
+                    <select className="form-control"
+                        onChange={e => {
+                                onTransactionChild({ ...transactionChildState, deliveryOption: e.target.value });
+                            }}
+                    >
+                            <option value={""}>Pilih metode</option>
+                            <option value={"pick-up"}>Pick up</option>
+                            <option value={"pengiriman"}>Pengiriman</option>
+                        </select>
                     </div>
                     </div>
                     <div className="mb-3 row px-3">
@@ -65,96 +107,9 @@ const ModalCart = () => {
                                 {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Bread</td>
-                            <td>2</td>
-                            <td>Rp 35.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Soap</td>
-                            <td>3</td>
-                            <td>Rp 20.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Bread</td>
-                            <td>2</td>
-                            <td>Rp 35.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Soap</td>
-                            <td>3</td>
-                            <td>Rp 20.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Bread</td>
-                            <td>2</td>
-                            <td>Rp 35.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Soap</td>
-                            <td>3</td>
-                            <td>Rp 20.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
+                        
+                       
+                        
                         </tbody>
                     </table>
                     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 // import '../styles/volt.css'
-import title from '../utils/title';
+import title from '../utils/const/title';
 import ResetForm from '../components/form/ResetForm';
 
 const ResetPassword = () => {

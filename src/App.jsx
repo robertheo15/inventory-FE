@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Routes } from "react-router-dom";
 
 import LoginPage from './pages/LoginPage'
@@ -20,9 +20,13 @@ import CourierPage from './pages/CourierPage';
 import AddCartPage from './pages/AddCartPage';
 import ProductsPage from './pages/ProductsPage';
 import InvoicePage from './pages/InvoicePage';
+import useTransactions from './hooks/useTransactions';
+
 
 const  App = () => {  
-  
+  const { transactions } = useTransactions();
+  // console.log(transactions);
+
   let auth = true;
   if (auth) {
     return (

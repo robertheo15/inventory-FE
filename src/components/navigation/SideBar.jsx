@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImList2, ImStatsDots, ImCoinDollar, ImWrench, ImBook, ImCreditCard} from 'react-icons/im';
-import title from '../../utils/title'
+import title from '../../utils/const/title'
 
 const SideBar = () => 
 

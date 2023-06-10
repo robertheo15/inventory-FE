@@ -3,7 +3,7 @@ import SideBar from '../components/navigation/SideBar';
 import TopNavigation from '../components/Navigation/TopNavigation';
 import Footer from '../components/navigation/Footer';
 import {Helmet, HelmetProvider } from "react-helmet-async";
-import title from '../utils/title';
+import title from '../utils/const/title';
 
 const CourierPage = () => {
 

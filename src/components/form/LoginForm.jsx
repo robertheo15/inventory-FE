@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import EmailInput from '../input/EmailInput';
 import PasswordInput from '../input/PasswordInput';
-import label from '../../utils/label';
-import button from '../../utils/button';
+import label from '../../utils/const/label';
+import button from '../../utils/const/button';
 
 const LoginForm = () => {
 

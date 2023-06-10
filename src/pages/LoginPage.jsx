@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 // import '../assets/css/volt.css'
-import title from '../utils/title';
+import title from '../utils/const/title';
 import LoginForm from '../components/form/LoginForm';
 const LoginPage = () => {
 
