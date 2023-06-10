@@ -26,8 +26,8 @@ const TransactionChildren = {
 };
 
 const TransactionDetails = {
-  
-  product: {},
+  pv_id: "",
+  product_id: "",
   price: "sedang dikemas",
   qty: 0  
 };

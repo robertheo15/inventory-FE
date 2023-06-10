@@ -1,10 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import useProducts from '../../hooks/useProducts';
+import useProductVariants from '../../hooks/useProductVariants';
+import { getProductVariants } from '../../utils/api/productsVariant';
 
 const ModalCart = ({transactionChildState, onTransactionChild, transactionDetailsState, onTransactionDetail}) => {
     const { products } = useProducts();
+    const [state, setState] = useState('');
+    const { productVariants } = useProductVariants(state);
+
     let resProduct = products.data;
+    // let resproductVariants = productVariants.data;
     console.log(transactionDetailsState);
+    // console.log(variant)
+
     return (
         <div className="modal fade" id="modalCart" tabIndex="-1" aria-labelledby="modalCartLabel" aria-hidden="true">
             <div className="modal-dialog modal-xl">
@@ -19,15 +27,24 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <div className="mb-3 row">
                     <label htmlFor="inputTitle1" className="col-sm-2 col-form-label">Produk:</label>
                     <div className="col-sm-10">
-                    <select className="form-control" id="productType" onChange={e => {
-                                onTransactionDetail({ ...transactionDetailsState, product: e.target.value });
-                            }}>
+                    <select className="form-control" id="productType" 
+                        onChange={e => {
+                            onTransactionDetail({ ...transactionDetailsState, product_id: e.target.value });
+                            // console.log(e.target.value);
+                            console.log(transactionDetailsState.product_id);
+                            getProductVariants(transactionDetailsState.product_id).then(result => 
+                            console.log(result)
+                            )
+                            console.log();
+                            
+                            setState(e.target.value);
+                        }}>
                             <option value={""}>Pilih produk</option>
                       {  
                         (resProduct != undefined ? 
                           (resProduct.map((product, key) => (
                             
-                            <option key={key} value={ product } 
+                            <option key={key} value={ product.id } 
                               >{product.name}</option>
         
                           )))
@@ -37,6 +54,30 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                         {/* <input type="text" className="form-control" id="inputTitle1"/> */}
                     </div>
                     </div>
+
+                    <div className="mb-3 row">
+                    <label htmlFor="inputTitle1" className="col-sm-2 col-form-label">Produk variant:</label>
+                    <div className="col-sm-10">
+                    <select className="form-control" id="productType" 
+                        onChange={e => {
+                            onTransactionDetail({ ...transactionDetailsState, pv_id: e.target.value });
+                        }}>
+                            <option value={""}>Pilih produk varian</option>
+                      {/* {  
+                        (resproductVariants != undefined ? 
+                          (resproductVariants.map((variant, key) => (
+                            
+                            <option key={key} value={ variant.id } 
+                              >{variant.name}</option>
+        
+                          )))
+                         : "")
+                      }              */}
+                      </select>
+                        {/* <input type="text" className="form-control" id="inputTitle1"/> */}
+                    </div>
+                    </div>
+
                     <div className="mb-3 row">
                     <label htmlFor="inputTitle2" className="col-sm-2 col-form-label">Jumlah:</label>
                     <div className="col-sm-10">
