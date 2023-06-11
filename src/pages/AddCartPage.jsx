@@ -8,42 +8,65 @@ import TableTransactions from '../components/Tables/TableTransactions'
 import {Helmet, HelmetProvider } from "react-helmet-async";
 import { createTransactions } from '../utils/api/transaction'
 import useCustomers from '../hooks/useCustomers'
+import rupiah from '../utils/helper'
 
 
-const TransactionParent = {
-  c_id: "",
+const transactionParentModel = {
+  customer: "",
   status: "sedang dikemas",
   type: "parent",
   children :[]
 };
 
-const TransactionChildren = {
-  c_id: "",
+const transactionChildren = {
+  customer: "",
   status: "sedang dikemas",
   deliveryOption : "",
+  priceType: "",
   type: "child",
-  transaction_details :[]
+  transactionDetails :[]
 };
 
-const TransactionDetails = {
-  pv_id: "",
-  product_id: "",
-  price: "sedang dikemas",
-  qty: 0  
+const  newTransactionDetails = {
+  transactionDetails: [],
+  deliveryOption: "",
+  priceType: "",
+  totalPrice: 0,
+
+};
+
+const  newTransactionDetail = {
+  product : {},
+  productVariant: {},
+  qty: 0,
+  deliveryOption: "",
+  priceType: "",
+  price: 0,
+
 };
 
 const AddCartPage = () => {
   const { customers } = useCustomers();
+  const [transactionParent, setTransactionParent] = useState(transactionParentModel);
 
+  const [transactionChild, setTransactionChild] = useState(transactionChildren);
 
-  const [transactionParentState, setTransactionParent] = useState(TransactionParent);
-  const [transactionChildState, setTransactionChild] = useState(TransactionChildren);
-  const [transactionDetailsState, setTransactionDetail] = useState(TransactionDetails);
-  transactionChildState.transaction_details = transactionDetailsState;
-  transactionParentState.children = transactionChildState;
-  let resCustomers = customers.data;
+  const [transactionDetail, setTransactionDetail] = useState(newTransactionDetail);
+  const [transactionDetails, setTransactionDetails] = useState([]);
 
-  console.log(transactionParentState);
+  const findCustomers = (customerId) => {
+    return customers.data.find((customer) => customer.id === customerId);
+  };
+
+  const handleRemoveTransactionChildren = (index) => {
+    const updatedChildren = transactionParent.children.filter((_, i) => i !== index);
+    const updatedTransactionParent = { ...transactionParent, children: updatedChildren };
+    setTransactionParent(updatedTransactionParent);
+  };
+  
+  const totalPrice = transactionParent.children.reduce((acc, child) => acc + child.totalPrice, 0);
+
+  console.log(transactionParent);
 
   return (
     <>
@@ -61,13 +84,14 @@ const AddCartPage = () => {
                   <label htmlFor="inputName" className="col-sm-4 col-form-label">Nama pembeli:</label>
                     <div className="col-sm-8">
                       <select className="form-control" id="productType" onChange={e => {
-                                setTransactionParent({ ...transactionParentState, c_id: e.target.value });
-                                setTransactionChild({ ...transactionChildState, c_id: e.target.value });
+                                const customer = findCustomers(e.target.value);
+                                setTransactionParent({ ...transactionParent, customer: customer });
+                                setTransactionChild({ ...transactionChild, customer: customer });
                             }}>
                             <option value={""}>pilih customer</option>
                       {  
-                        (resCustomers != undefined ? 
-                          (resCustomers.map((customer, key) => (
+                        (customers.data != undefined ? 
+                          (customers.data.map((customer, key) => (
                             
                             <option key={key} value={customer.id} 
                               >{customer.full_name}</option>
@@ -110,7 +134,13 @@ const AddCartPage = () => {
 
               <div className="col-12 col-lg-6 order-1 order-lg-2 text-end d-flex flex-column align-items-end justify-content-end">
                 <h6>Total Price</h6>
-                <h4><b>Rp. 150.000</b></h4>
+                <h4>
+                  <b>
+                      {
+                        rupiah(totalPrice)
+                      }
+                    </b>
+                  </h4>
 
                   {/* Button Checkout */}
                     <button type="button" className="btn btn-primary" onClick={createTransactions}>
@@ -125,23 +155,30 @@ const AddCartPage = () => {
 
                 {/* Table Transacti */}
                  
-                <TableTransactions/>
+                <TableTransactions transactionParent={transactionParent} handleRemoveTransactionChildren={handleRemoveTransactionChildren}/>
 
               </div>
             </div>
 
             {/* Modals Cart */}
             <ModalCart 
-              transactionChildState={transactionChildState}
-              onTransactionChild={setTransactionChild}
-              transactionDetailsState={transactionDetailsState}
-              onTransactionDetail={setTransactionDetail}
+              transactionParent={transactionParent}
+              setTransactionParent={setTransactionParent}
+
+              transactionChild={transactionChild}
+              setTransactionChild={setTransactionChild}
+
+              transactionDetails={transactionDetails}
+              setTransactionDetails={setTransactionDetails}
+
+              transactionDetail={transactionDetail}
+              setTransactionDetail={setTransactionDetail}
               />
             {/* End Modals Cart */}
 
 
             {/* Modals Preview */}
-            <ModalPreview/>
+            {/* <ModalPreview/> */}
             {/* End Modals Preview */}
 
           </div>

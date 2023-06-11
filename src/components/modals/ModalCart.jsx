@@ -1,17 +1,34 @@
 import React, {useState} from 'react'
 import useProducts from '../../hooks/useProducts';
-import useProductVariants from '../../hooks/useProductVariants';
 import { getProductVariants } from '../../utils/api/productsVariant';
+import rupiah from '../../utils/helper';
 
-const ModalCart = ({transactionChildState, onTransactionChild, transactionDetailsState, onTransactionDetail}) => {
+const ModalCart = ({transactionParent, 
+                    setTransactionParent, 
+                    transactionChild, 
+                    setTransactionChild, 
+                    transactionDetails, 
+                    setTransactionDetails,
+                    transactionDetail, 
+                    setTransactionDetail}) => {
     const { products } = useProducts();
-    const [state, setState] = useState('');
-    const { productVariants } = useProductVariants(state);
+    const [productVariants, setProductVariants] = useState([]);
+    // const [transactionDetail, setTransactionDetail] = useState(newTransactionDetail);
 
-    let resProduct = products.data;
-    // let resproductVariants = productVariants.data;
-    console.log(transactionDetailsState);
-    // console.log(variant)
+    const handleRemoveTransactionDetail = (index) => {
+        const updatedTransactionDetails = transactionDetails.filter(
+          (_, i) => i !== index
+        );
+        setTransactionDetails(updatedTransactionDetails);
+      };
+
+    const findProducts = (productId) => {
+        return products.data.find((product) => product.id === productId);
+    };
+
+    const findProductVariants = (variantId) => {
+        return productVariants.data.find((variant) => variant.id === variantId);
+    };
 
     return (
         <div className="modal fade" id="modalCart" tabIndex="-1" aria-labelledby="modalCartLabel" aria-hidden="true">
@@ -29,29 +46,25 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <div className="col-sm-10">
                     <select className="form-control" id="productType" 
                         onChange={e => {
-                            onTransactionDetail({ ...transactionDetailsState, product_id: e.target.value });
-                            // console.log(e.target.value);
-                            console.log(transactionDetailsState.product_id);
-                            getProductVariants(transactionDetailsState.product_id).then(result => 
-                            console.log(result)
+                            const product = findProducts(e.target.value);
+                            setTransactionDetail({ ...transactionDetail, 
+                                                    product: product, 
+                                                    // product_name: product.handleRemoveTransactionDetail 
+                                                });
+                            getProductVariants(e.target.value).then(result => 
+                                setProductVariants(result)
                             )
-                            console.log();
-                            
-                            setState(e.target.value);
                         }}>
-                            <option value={""}>Pilih produk</option>
-                      {  
-                        (resProduct != undefined ? 
-                          (resProduct.map((product, key) => (
-                            
-                            <option key={key} value={ product.id } 
-                              >{product.name}</option>
-        
-                          )))
-                         : "")
-                      }             
+                        <option value={""}>Pilih produk</option>
+                        {  
+                            (products.data != undefined ? (products.data.map((product, key) => (
+                                
+                                <option key={key} value={ product.id } 
+                                >{product.name}</option>
+            
+                            ))) : '')
+                        }             
                       </select>
-                        {/* <input type="text" className="form-control" id="inputTitle1"/> */}
                     </div>
                     </div>
 
@@ -60,21 +73,19 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <div className="col-sm-10">
                     <select className="form-control" id="productType" 
                         onChange={e => {
-                            onTransactionDetail({ ...transactionDetailsState, pv_id: e.target.value });
+                            const variant = findProductVariants(e.target.value);
+                            setTransactionDetail({ ...transactionDetail, productVariant: variant });                                                                                                                                
                         }}>
                             <option value={""}>Pilih produk varian</option>
-                      {/* {  
-                        (resproductVariants != undefined ? 
-                          (resproductVariants.map((variant, key) => (
+                      {  
+                          (productVariants.data != undefined ? (productVariants.data.map((variant, key) => (
                             
                             <option key={key} value={ variant.id } 
-                              >{variant.name}</option>
+                              >{`${variant.name} ${variant.colour}`}</option>
         
-                          )))
-                         : "")
-                      }              */}
+                          ))) : '')
+                      }             
                       </select>
-                        {/* <input type="text" className="form-control" id="inputTitle1"/> */}
                     </div>
                     </div>
 
@@ -82,9 +93,9 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <label htmlFor="inputTitle2" className="col-sm-2 col-form-label">Jumlah:</label>
                     <div className="col-sm-10">
                         <input type="number" className="form-control" id="inputTitle2" 
-                            value={transactionDetailsState.qty}
+                            value={transactionDetail.qty}
                             onChange={e => {
-                                onTransactionDetail({ ...transactionDetailsState, qty: e.target.value });
+                                setTransactionDetail({  ...transactionDetail, qty: e.target.value });
                             }}
                         />
                     </div>
@@ -92,7 +103,12 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <div className="mb-3 row">
                     <label htmlFor="inputTitle3" className="col-sm-2 col-form-label">Tipe harga:</label>
                     <div className="col-sm-10">
-                        <select className="form-control">
+                        <select className="form-control"
+                            onChange={e => {
+                                const price = (e.target.value === 'grosir' ?  transactionDetail.product.grosir_price : transactionDetail.product.eceran_price)
+                                setTransactionDetail({ ...transactionDetail, priceType: e.target.value, price : price });
+                            }}
+                        >
                             <option value={""}>Pilih tipe harga</option>
                             <option value={"grosir"}>Grosir</option>
                             <option value={"eceran"}>Eceran</option>
@@ -104,7 +120,7 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     <div className="col-sm-10">
                     <select className="form-control"
                         onChange={e => {
-                                onTransactionChild({ ...transactionChildState, deliveryOption: e.target.value });
+                                setTransactionDetail({ ...transactionDetail, deliveryOption: e.target.value });
                             }}
                     >
                             <option value={""}>Pilih metode</option>
@@ -114,7 +130,13 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                     </div>
                     </div>
                     <div className="mb-3 row px-3">
-                        <button type="button" className="btn btn-primary ms-auto" style={{ width: 'fit-content' }}>
+                        <button type="button" className="btn btn-primary ms-auto" style={{ width: 'fit-content' }}
+                            onClick={
+                                () => {                       
+                                    setTransactionDetails([...transactionDetails, transactionDetail]);
+                                    }
+                            }
+                        >
                             Add to Cart
                         </button>
                     </div>
@@ -129,28 +151,41 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
                             <th scope="col">Product</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Total price</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Snack</td>
-                            <td>1</td>
-                            <td>Rp 45.000</td>
-                            <td>
-                                <button type="submit" className="btn btn-danger mx-1">
-                                <i className="bi bi-trash-fill"></i>
-                                </button>
-                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                                <i className="bi bi-pencil-square"></i>
-                                </button>
-                                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                            </td>
-                        </tr>
-                        
-                       
-                        
+                        {
+                               (transactionDetails != undefined ? (transactionDetails.map((detail, key) => {
+
+                                return (
+                                <tr key={key}>
+                                    <th scope="row">{key+1}</th>
+                                    <td>{`${detail.product.name} ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>
+                                    <td>{detail.qty}</td>
+                                    <td>{ rupiah(detail.price)}</td>
+                                    <td>{ rupiah(detail.price * detail.qty) }</td>
+                                    <td>
+                                        <button type="submit" className="btn btn-danger mx-1"
+                                        onClick={() => 
+                                                handleRemoveTransactionDetail(key)
+                                            }
+                                        >
+                                        <i className="bi bi-trash-fill"></i>
+                                        </button>
+                                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                                        <i className="bi bi-pencil-square"></i>
+                                        </button>
+                                    </td>
+                                </tr>)
+                               }
+                                ))
+                               
+                               : '')
+                                
+                                 
+                            }
                         </tbody>
                     </table>
                     </div>
@@ -160,12 +195,37 @@ const ModalCart = ({transactionChildState, onTransactionChild, transactionDetail
     
                 <div className='d-flex justify-content-end px-3'>
                     <h6 className='me-2'>Total Prices: </h6>
-                    <h6 className='fw-bolder'>Rp 135.000</h6>
+                    {
+                        transactionDetails.length > 0 ? (
+                            <h6 className='fw-bolder'>
+                                {rupiah(transactionDetails.reduce((total, transactionDetail) =>
+                                    total + transactionDetail.qty * transactionDetail.price, 0
+                            ))}
+                        </h6>
+                        ) : (
+                        0)
+                    }
                 </div>
     
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" className="btn btn-primary">Confirm</button>
+                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal" 
+                        onClick={() => {
+                            setTransactionParent(prevState => ({
+                                ...prevState,
+                                children: [
+                                    ...prevState.children,
+                                    {   invoice : `KRSX-${Date.now()}`,
+                                        transactionDetails: [transactionDetails],
+                                        totalPrice: transactionDetails.reduce((total, transactionDetail) =>
+                                        total + transactionDetail.qty * transactionDetail.price, 0
+                                        ),
+                                        deliveryOption: transactionDetails[0].deliveryOption,
+                                    }
+                                ]
+                                }));
+                            }}
+                        >Confirm</button>
                 </div>
                 </div>
             </div>

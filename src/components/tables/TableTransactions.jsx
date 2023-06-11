@@ -1,46 +1,53 @@
 import React from 'react'
-import {Helmet, HelmetProvider } from "react-helmet-async";
+import rupiah from '../../utils/helper'
 
-
-const TableTransactions = () => {
+const TableTransactions = ({transactionParent, handleRemoveTransactionChildren}) => {
   return (
     <>
       <div className="table-responsive">
-        <table id="myTable" className="table table-striped" style={{ width:'100%' }}>
+        <table className="table table-bordered" style={{ width:'100%' }}>
           <thead>
             <tr>
               <th>No</th>
-              <th>Question</th>
-              <th>Answer</th>
-              <th>Updated By</th>
+              <th>Transaksi</th>
+              <th>Metode pengiriman</th>
+              <th>Total price</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>asd</td>
-              <td>asd</td>
-              <td>asd</td>
+          {
+            (transactionParent.children.length > 0 ? (transactionParent.children.map((child, key) => {
+
+              return (
+              <tr key={key}>
+                <th scope="row">{key+1}</th>
+                <td>{child.invoice}</td>
+                <td>{child.deliveryOption}</td>              
+                <td>{rupiah(child.totalPrice)}</td>
+                <td>
+                    <button type="submit" className="btn btn-danger mx-1"
+                    onClick={() =>{ 
+                        handleRemoveTransactionChildren(key)
+                        }
+                      }
+                    >
+                    <i className="bi bi-trash-fill"></i>
+                    </button>
+                    {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+                    <i className="bi bi-pencil-square"></i>
+                    </button> */}
               
-              <td >
-                <button type="submit" className="btn btn-danger mx-1">
-                  <i className="bi bi-trash-fill"></i>
-                </button>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
-                  <i className="bi bi-pencil-square"></i>
-                </button>
-                {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-              </td>
-            </tr>
+                </td>
+                  {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}        
+              </tr>)
+              }
+              ))
+              : '')                 
+            }
           </tbody>
         </table>
       </div>
-      <HelmetProvider>
-        <Helmet>
-          <script src="/js/dataTable.js" type="text/javascript"/>
-        </Helmet>
-      </HelmetProvider>
     </>   
   )
 }
