@@ -1,45 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import SideBar from "../components/navigation/SideBar";
 import TopNavigation from "../components/Navigation/TopNavigation";
 import Footer from "../components/navigation/Footer";
 import TableInvoice from "../components/tables/TableInvoice";
 
 const InvoicePage = () => {
-    return(
-        <>
-            <SideBar/>
-            <main className="content">
-                <TopNavigation/>
+  const location = useLocation();
+  const navigate = useNavigate();
 
-                <div class="row my-5">
-                    <div class="col-6">
-                        <div className="mb-2 d-flex">
-                            <h6 className='me-2'><b>Nama: </b></h6>
-                            <h6 className=''>Vladimir Gimank</h6>
-                        </div>
-                        <div className="mb-2 d-flex">
-                            <h6 className='me-2'><b>NoHP: </b></h6>
-                            <h6 className=''>123456789</h6>
-                        </div>
-                        <div className="mb-2 d-flex">
-                            <h6 className='me-2'><b>Alamat: </b></h6>
-                            <h6 className=''>Vladimir Gimank Rumahnya</h6>
-                        </div>
-                    </div>
-                </div>
+  const transactionParent = location.state;
 
-                <div class="row">
-                    <div class="col-12">
-                        <TableInvoice/>
-                        {/* 1 invoice = 1 component TableInvoice, tapi klo mau di modip juga bebas wkwkwkwk */}
-                        <TableInvoice/>
-                    </div>
-                </div>
+  // const navigateToAddCart = () => {
+  //   useEffect(() => {
+  //     navigate("/carts");
+  //   }, []);
+  // };
 
-                <Footer/>
-            </main>
-        </>
-    )
-}
+  // if (transactionParent == undefined || transactionParent == null) {
+  //   navigateToAddCart();
+  // }
+  useEffect(() => {
+    if (!transactionParent) {
+    navigate("/carts");
+    }
+    }, [navigate, transactionParent]);
+    
+    if (!transactionParent) {
+    return null;
+    }
 
-export default InvoicePage
+  return (
+    <>
+      <SideBar />
+      <main className="content">
+        <TopNavigation />
+
+        <div className="row my-5">
+          <div className="col-6">
+            <div className="mb-2 d-flex">
+              <h6 className="me-2">
+                <b>Nama: </b>
+              </h6>
+              <h6 className="">{transactionParent?.customer.full_name}</h6>
+            </div>
+            <div className="mb-2 d-flex">
+              <h6 className="me-2">
+                <b>No HP: </b>
+              </h6>
+              <h6 className="">{transactionParent?.customer.phone_number}</h6>
+            </div>
+            <div className="mb-2 d-flex">
+              <h6 className="me-2">
+                <b>Alamat: </b>
+              </h6>
+              <h6 className="">{transactionParent?.customer.address}</h6>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12">
+            <TableInvoice transactionChildren={transactionParent.children} />
+            {/* 1 invoice = 1 component TableInvoice, tapi klo mau di modip juga bebas wkwkwkwk */}
+            {/* <TableInvoice/> */}
+          </div>
+        </div>
+
+        <Footer />
+      </main>
+    </>
+  );
+};
+
+export default InvoicePage;
