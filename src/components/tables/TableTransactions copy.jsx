@@ -4,7 +4,7 @@ import {Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function TableTransactions() {
   return (
-    // <table class="table table-bordered">
+    // <table className="table table-bordered">
     //     <thead>
     //     <tr>
     //         <th scope="col">Transaction</th>
@@ -21,7 +21,7 @@ export default function TableTransactions() {
     //         <td>Waiting</td>
     //         <td>-</td>
     //         <td>
-    //         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+    //         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
     //             Preview
     //         </button>
     //         </td>
@@ -32,7 +32,7 @@ export default function TableTransactions() {
     //         <td>Sent</td>
     //         <td>5</td>
     //         <td>
-    //         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+    //         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
     //             Preview
     //         </button>
     //         </td>
@@ -43,7 +43,7 @@ export default function TableTransactions() {
     //         <td>Completed</td>
     //         <td>4</td>
     //         <td>
-    //         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
+    //         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
     //             Preview
     //         </button>
     //         </td>

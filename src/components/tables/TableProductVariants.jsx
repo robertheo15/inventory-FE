@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import rupiah from "../../utils/helper";
 import ModalProductEdit from "../modals/ModalProductEdit";
 
-const TableProducts = ({
-  product,
-  setProduct,
-  products,
-  handleUpdateProduct,
-  handleDeleteProduct,
+const TableProductVariants = ({
+  productVariants,
+  handleDeleteProductVariant,
+  // products,
+  // handleUpdateProduct,
+  // handleDeleteProduct,
 }) => {
   return (
     <div className="table-responsive">
@@ -20,29 +20,32 @@ const TableProducts = ({
           <tr>
             <th>No</th>
             <th>Nama produk</th>
-            <th>Deskripsi</th>
-            <th>Harga dasar</th>
-            <th>Harga eceran</th>
-            <th>Harga grosir</th>
+            <th>Nama produk variant</th>
+            <th>Warna</th>
+            <th>Lokasi</th>
+            <th>Stok</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {products.data != undefined
-            ? products.data.map((product, key) => {
+          {productVariants.data != undefined
+            ? productVariants.data.map((productVariant, key) => {
                 return (
                   <tr key={key}>
                     <td>{key + 1}</td>
-                    <td>{product.name}</td>
-                    <td>{product.description}</td>
-                    <td>{rupiah(product.base_price)}</td>
-                    <td>{rupiah(product.eceran_price)}</td>
-                    <td>{rupiah(product.grosir_price)}</td>
+                    <td>{productVariant.product_name}</td>
+                    <td>{productVariant.name}</td>
+                    <td>{productVariant.colour}</td>
+                    <td>{productVariant.location}</td>
+                    <td>{productVariant.stock}</td>
 
                     <td>
-                      <button type="submit" className="btn btn-danger mx-1"
+                      <button
+                        type="submit"
+                        className="btn btn-danger mx-1"
                         onClick={() => {
-                          handleDeleteProduct(product);
+                          console.log(productVariant.id)
+                          handleDeleteProductVariant(productVariant.id);
                         }}
                       >
                         <i className="bi bi-trash-fill"></i>
@@ -66,13 +69,13 @@ const TableProducts = ({
         </tbody>
       </table>
       {/* Modal Item List */}
-      <ModalProductEdit
-        product={product}
-        setProduct={setProduct}
-        handleUpdateProduct={handleUpdateProduct}
-      />
+      {/* <ModalProductEdit */}
+      {/* // product={product}
+        // setProduct={setProduct}
+        // handleUpdateProduct={handleUpdateProduct} */}
+      {/* /> */}
     </div>
   );
 };
 
-export default TableProducts;
+export default TableProductVariants;

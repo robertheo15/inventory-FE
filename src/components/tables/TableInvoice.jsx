@@ -27,13 +27,11 @@ const TableInvoice = ({ transactionChildren }) => {
                   <tbody>
                     {child?.transactionDetails.map((detail) => {
                       return (
-                        <>
-                          <tr key={key}>
-                            <td>{`${detail?.product.name} - ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>
-                            <td>{detail.qty}</td>
-                            <td>{rupiah(detail.qty * detail.price)}</td>
-                          </tr>
-                        </>
+                        <tr key={key}>
+                          <td>{`${detail?.product.name} - ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>
+                          <td>{detail.qty}</td>
+                          <td>{rupiah(detail.qty * detail.price)}</td>
+                        </tr>
                       );
                     })}
                   </tbody>
