@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { getTransactions } from "../utils/api/transaction";
 
 
-export const useTransactions = () => {
+const useTransactions = (requestBody) => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getTransactions();
-        setTransactions(data);
+      const data = await getTransactions(requestBody);
+      setTransactions(data);
     };
     fetchData();
   }, []);
 
-  return { transactions};
+  return { transactions };
 };
-
 
 export default useTransactions;
