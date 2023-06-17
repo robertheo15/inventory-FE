@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useProducts from "../../hooks/useProducts";
-import { getProductVariants } from "../../utils/api/productsVariant";
 import rupiah from "../../utils/helper";
+import { getProductVariantsByProductId } from "../../utils/api/productsVariant";
 
 const ModalCart = ({
   transactionParent,
@@ -16,7 +16,7 @@ const ModalCart = ({
   const { products } = useProducts();
   const [productVariants, setProductVariants] = useState([]);
   // const [transactionDetail, setTransactionDetail] = useState(newTransactionDetail);
-
+  console.log(productVariants);
   const handleRemoveTransactionDetail = (index) => {
     const updatedTransactionDetails = transactionDetails.filter(
       (_, i) => i !== index
@@ -70,7 +70,8 @@ const ModalCart = ({
                       product: product,
                       // product_name: product.handleRemoveTransactionDetail
                     });
-                    getProductVariants(e.target.value).then((result) =>
+                    
+                    getProductVariantsByProductId(e.target.value).then((result) =>
                       setProductVariants(result)
                     );
                   }}
@@ -109,7 +110,7 @@ const ModalCart = ({
                         <option
                           key={key}
                           value={variant.id}
-                        >{`${variant.name} ${variant.colour}`}</option>
+                        >{`${variant.name} ${variant.colour} - Stok ${variant.stock} - GUDANG`}</option>
                       ))
                     : ""}
                 </select>
