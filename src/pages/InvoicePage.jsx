@@ -24,13 +24,13 @@ const InvoicePage = () => {
   // }
   useEffect(() => {
     if (!transactionParent) {
-    navigate("/carts");
+      navigate("/cashier");
     }
-    }, [navigate, transactionParent]);
-    
-    if (!transactionParent) {
+  }, [navigate, transactionParent]);
+
+  if (!transactionParent) {
     return null;
-    }
+  }
 
   return (
     <>
@@ -64,8 +64,6 @@ const InvoicePage = () => {
         <div className="row">
           <div className="col-12">
             <TableInvoice transactionChildren={transactionParent.children} />
-            {/* 1 invoice = 1 component TableInvoice, tapi klo mau di modip juga bebas wkwkwkwk */}
-            {/* <TableInvoice/> */}
           </div>
         </div>
 

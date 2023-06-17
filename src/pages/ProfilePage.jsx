@@ -16,21 +16,21 @@ const ProfilePage = () => {
       <SideBar/>
       <main className="content">
         <TopNavigation/>
-        <div class="card border-0 shadow">
+        <div className="card border-0 shadow">
           <form action='' method="POST">
-            {/* <div class="card-header d-flex justify-content-between"> */}
+            {/* <div className="card-header d-flex justify-content-between"> */}
               {/* <?php if (session()->getFlashdata('success')) : ?> */}
-                  {/* <div class="alert alert-success alert-dismissible fade show" role="alert"> */}
-                      {/* <span class="fas fa-bullhorn"></span> */}
+                  {/* <div className="alert alert-success alert-dismissible fade show" role="alert"> */}
+                      {/* <span className="fas fa-bullhorn"></span> */}
                       {/* <?= session()->getFlashdata('success'); ?> */}
-                      {/* <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button> */}
+                      {/* <button type="button" className="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button> */}
                   {/* </div> */}
               {/* <?php endif; ?> */}
               {/* <?php if (session()->getFlashdata('error')) : ?> */}
-                  {/* <div class="alert alert-danger alert-dismissible fade show" role="alert"> */}
-                      {/* <span class="fas fa-bullhorn"></span> */}
+                  {/* <div className="alert alert-danger alert-dismissible fade show" role="alert"> */}
+                      {/* <span className="fas fa-bullhorn"></span> */}
                       {/* <?= session()->getFlashdata('error'); ?> */}
-                      {/* <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button> */}
+                      {/* <button type="button" className="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button> */}
                   {/* </div> */}
               {/* <?php endif; ?> */}
 

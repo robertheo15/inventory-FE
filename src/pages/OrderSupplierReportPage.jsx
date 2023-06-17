@@ -5,7 +5,7 @@ import Footer from '../components/navigation/Footer';
 import {Helmet, HelmetProvider } from "react-helmet-async";
 import title from '../utils/const/title';
 
-const SalesPage = () => {
+const OrderSupplierReportPage = () => {
 
   useEffect(() => {
       document.title = title.sales;
@@ -72,4 +72,4 @@ const SalesPage = () => {
   )
 }
 
-export default SalesPage;
+export default OrderSupplierReportPage;

@@ -43,7 +43,7 @@ const newTransactionDetail = {
   price: 0,
 };
 
-const AddCartPage = () => {
+const AddCartPageSupplier = () => {
   const navigate = useNavigate();
   const { customers } = useCustomers();
   const [transactionParent, setTransactionParent] = useState(
@@ -248,4 +248,4 @@ const AddCartPage = () => {
   );
 };
 
-export default AddCartPage;
+export default AddCartPageSupplier;
