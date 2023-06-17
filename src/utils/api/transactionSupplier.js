@@ -1,7 +1,7 @@
 import axios from "axios";
 import BASE_URL from "../const/api-const";
 
-const createTransactions = async (transactionRequestBody) => {
+const createTransactionSupplier = async (transactionRequestBody) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/transactions`,
@@ -14,12 +14,11 @@ const createTransactions = async (transactionRequestBody) => {
 };
 
 
-const getTransactions = async (requestBody) => {
+const getTransactionsSupplier = async (requestBody) => {
   try {
-    const response = await axios.post(`${BASE_URL}/transactions/status`, 
+    const response = await axios.post(`${BASE_URL}/transactions/suppliers/status`, 
       requestBody,
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -27,4 +26,4 @@ const getTransactions = async (requestBody) => {
   }
 };
 
-export { getTransactions, createTransactions };
+export { getTransactionsSupplier, createTransactionSupplier };
