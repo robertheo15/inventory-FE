@@ -10,6 +10,28 @@ const getProducts = async () => {
   }
 };
 
+const getProductById = async (productId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/products/${productId}`, {
+      id: productId,
+    });
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
+const getProductsBySupplierId = async (supplierId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/products/suppliers/${supplierId}`, {
+      supplier_id: supplierId,
+    });
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
 const createProduct = async (product) => {
   try {
     const response = await axios.post(`${BASE_URL}/products`, product);
@@ -42,4 +64,11 @@ const deleteProductByID = async (productId) => {
   }
 };
 
-export { getProducts, createProduct, updateProductById, deleteProductByID };
+export {
+  getProducts,
+  getProductById,
+  getProductsBySupplierId,
+  createProduct,
+  updateProductById,
+  deleteProductByID,
+};

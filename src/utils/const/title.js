@@ -6,7 +6,9 @@ const title = {
   brand: "Kreasitex Jakarta",
   sales: "Penjualan - Kreasitex Jakarta",
   expenses: "Pengeluaran - Kreasitex Jakarta",
-  profile: "Profil - Kreasitex Jakarta"
+  profile: "Profil - Kreasitex Jakarta",
+  orderReport : "Laporan pembelian - Kreasitex Jakarta",
+  salesReport : "Laporan penjualan - Kreasitex Jakarta"
 }
 
 export default title;

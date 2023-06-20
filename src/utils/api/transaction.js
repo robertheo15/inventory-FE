@@ -13,11 +13,23 @@ const createTransactions = async (transactionRequestBody) => {
   }
 };
 
-
 const getTransactions = async (requestBody) => {
   try {
-    const response = await axios.post(`${BASE_URL}/transactions/status`, 
-      requestBody,
+    const response = await axios.post(
+      `${BASE_URL}/transactions/status`,
+      requestBody
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return { error: true, data: null };
+  }
+};
+
+const updateStatusSedangDikirim = async (transactionId) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/transactions/sends/${transactionId}`
     );
     console.log(response);
     return response.data;
@@ -27,4 +39,22 @@ const getTransactions = async (requestBody) => {
   }
 };
 
-export { getTransactions, createTransactions };
+const updateStatusSelesai = async (transactionId) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/transactions/finish/${transactionId}`
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return { error: true, data: null };
+  }
+};
+
+export {
+  getTransactions,
+  createTransactions,
+  updateStatusSedangDikirim,
+  updateStatusSelesai,
+};

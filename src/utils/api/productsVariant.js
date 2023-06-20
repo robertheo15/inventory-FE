@@ -34,6 +34,19 @@ const getProductVariants = async () => {
   }
 };
 
+const getProductVariantById = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/products/variants/${id}`,
+    {
+      id: id,
+    }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
 const deleteProductVariantById = async (productVariantId) => {
   try {
     const response = await axios.delete(
@@ -51,6 +64,7 @@ const deleteProductVariantById = async (productVariantId) => {
 export {
   createProductVariant,
   getProductVariantsByProductId,
+  getProductVariantById,
   getProductVariants,
   deleteProductVariantById,
 };
