@@ -2,8 +2,8 @@ import React from "react";
 import rupiah from "../../utils/helper";
 
 const TableTransactions = ({
-  transactionParent,
-  handleRemoveTransactionChildren,
+  // transactionParent,
+  // handleRemoveTransactionChildren,
 }) => {
   return (
     <>
@@ -14,12 +14,12 @@ const TableTransactions = ({
               <th>No</th>
               <th>Transaksi</th>
               <th>Metode pengiriman</th>
-              <th>Total price</th>
+              <th>Total harga</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {transactionParent.children.length > 0
+            {/* {transactionParent.children.length > 0
               ? transactionParent.children.map((child, key) => {
                   return (
                     <tr key={key}>
@@ -36,16 +36,16 @@ const TableTransactions = ({
                           }}
                         >
                           <i className="bi bi-trash-fill"></i>
-                        </button>
+                        </button> */}
                         {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
                     <i className="bi bi-pencil-square"></i>
                     </button> */}
-                      </td>
+                      {/* </td> */}
                       {/* <a id="" className="btn btn-primary view_data"><i className="bi bi-pencil-square"></i></a> */}
-                    </tr>
+                    {/* </tr>
                   );
                 })
-              : ""}
+              : ""} */}
           </tbody>
         </table>
       </div>
