@@ -11,20 +11,22 @@ import ExpensePage from "./pages/ExpensePage";
 
 import "../src/styles/volt.css";
 import SalesPage from "./pages/transaction/SalesPage";
-import OrderSupplierPage from "./pages/transaction/OrderSupplierPage";
 import ProfilePage from "./pages/ProfilePage";
 import RoleManagementPage from "./pages/RoleManagementPage";
-// import CashierPage from "./pages/cashier/CashierPage";
 import StockPage from "./pages/StockPage";
-import CourierPage from "./pages/CourierPage";
 import AddCartPage from "./pages/cashier/AddCartPage";
 import ProductsPage from "./pages/product/ProductsPage";
 import InvoicePage from "./pages/InvoicePage";
-import AddCartPageSupplier from "./pages/AddCartPageSupplier";
-import OrderSupplierReportPage from "./pages/OrderSupplierReportPage";
-import SalesReportPage from "./pages/SalesPageReport";
+import OrderSupplierReportPage from "./pages/report/OrderSupplierReportPage";
+import SalesReportPage from "./pages/report/SalesPageReport";
 import CustomerPage from "./pages/customer/CustomerPage";
 import ProductVariantPage from "./pages/product/ProductVariantPage";
+import TravelDocument from "./pages/report/SuratJalan";
+import CourierPage from "./pages/courier/CourierPage";
+import AddCartPageSupplier from "./pages/orders/AddCartPageSupplier";
+import PricePage from "./pages/setting/PricePage";
+import BarangMasukPage from "./pages/transaction/BarangMasukPage";
+import OrderSupplierPage from "./pages/transaction/OrderSupplierPage";
 
 const App = () => {
   let auth = true;
@@ -40,6 +42,7 @@ const App = () => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/expenses" element={<OrderSupplierPage />} />
           <Route path="/sales" element={<SalesPage />} />
+          <Route path="/orders/arrives" element={<BarangMasukPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/management" element={<RoleManagementPage />} />
           <Route path="/orders" element={<AddCartPageSupplier />} />
@@ -48,10 +51,12 @@ const App = () => {
           <Route path="/cashier" element={<AddCartPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/variants" element={<ProductVariantPage />} />
-          <Route path="/sales/reports" element={<OrderSupplierReportPage />} />
-          <Route path="/orders/reports" element={<SalesReportPage />} />
+          <Route path="/sales/reports" element={<SalesReportPage />} />
+          <Route path="/orders/reports" element={<OrderSupplierReportPage />} />
           <Route path="/invoices" element={<InvoicePage />} />
           <Route path="/customers" element={<CustomerPage />} />
+          <Route path="/report/surat-jalan" element={<TravelDocument />} />
+          <Route path="/prices" element={<PricePage />} />
         </Routes>
       </div>
     );
