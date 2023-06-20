@@ -157,7 +157,7 @@ const ModalChildProduct = () => {
             </div>
 
             <div className='d-flex justify-content-end px-3'>
-                <h6 className='me-2'>Total Prices: </h6>
+                <h6 className='me-2'>Total harga: </h6>
                 <h6 className='fw-bolder'>Rp 135.000</h6>
             </div>
 

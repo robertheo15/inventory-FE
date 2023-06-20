@@ -212,9 +212,9 @@ const ModalCart = ({
                     <th scope="col">#</th>
                     <th scope="col">Product</th>
                     <th scope="col">Qty</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Total price</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Total harga</th>
+                    <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -257,7 +257,7 @@ const ModalCart = ({
           </div>
 
           <div className="d-flex justify-content-end px-3">
-            <h6 className="me-2">Total Prices: </h6>
+            <h6 className="me-2">Total harga: </h6>
             {transactionDetails.length > 0 ? (
               <h6 className="fw-bolder">
                 {rupiah(

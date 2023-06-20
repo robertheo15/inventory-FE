@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useProducts from "../../../hooks/useProducts";
 import { createProductVariant } from "../../../utils/api/productsVariant";
 
