@@ -152,7 +152,7 @@ const SideBar = () => (
             >
               <ul className="flex-column nav">
                 <li className="nav-item ">
-                  <a className="nav-link" href="">
+                  <a className="nav-link" href="/orders/arrives">
                     <span className="sidebar-text">Barang masuk</span>
                   </a>
                 </li>
@@ -316,6 +316,11 @@ const SideBar = () => (
               aria-expanded="false"
             >
               <ul className="flex-column nav">
+                <li className="nav-item ">
+                  <a className="nav-link" href="/prices">
+                    <span className="sidebar-text">Harga</span>
+                  </a>
+                </li>
                 <li className="nav-item ">
                   <a className="nav-link" href="/profile">
                     <span className="sidebar-text">Profil</span>
