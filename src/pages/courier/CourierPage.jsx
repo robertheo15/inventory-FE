@@ -5,11 +5,11 @@ import Footer from "../../components/navigation/Footer";
 import title from "../../utils/const/title";
 import useTransactions from "../../hooks/useTransactions";
 import { ImArrowDown2, ImCheckmark } from "react-icons/im";
-import { updateStatusSedangDikirim } from "../../utils/api/transaction";
-import ModalSales from "../../components/modals/transaction/ModalSales";
+import { updateStatusSelesai } from "../../utils/api/transaction";
+import ModalCourier from "../../components/modals/courier/ModalCourier";
 
 const requestBody = {
-  status: "sedang dikemas",
+  status: "sedang dikirim",
 };
 
 const SalesPage = () => {
@@ -25,9 +25,8 @@ const SalesPage = () => {
       (transaction) => transaction.id === transactionCustomerId
     );
   };
-
-  const handleUpdateStatusSedangDikirim = async (transactionId) => {
-    const response = await updateStatusSedangDikirim(transactionId);
+  const handleUpdateStatusSelesai = async (transactionId) => {
+    const response = await updateStatusSelesai(transactionId);
     if (!response.error) {
       alert(response.message);
     }
@@ -39,7 +38,7 @@ const SalesPage = () => {
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-          <h3 className="card-header">Transaksi pembeli</h3>
+          <h3 className="card-header">Kurir</h3>
           <div className="card-body">
             <div className="table-responsive">
               <table className="table table-striped" style={{ width: "100%" }}>
@@ -65,11 +64,10 @@ const SalesPage = () => {
                             <td>{transaction.status}</td>
                             <td>{transaction.customer.full_name}</td>
                             <td>{date.toDateString()}</td>
-
                             <td>
                               <button
                                 type="button"
-                                className="btn btn-info"
+                                className="btn btn-info mx-1"
                                 data-bs-toggle="collapse"
                                 data-bs-target={`#collapse-${key}`}
                                 aria-expanded="false"
@@ -79,11 +77,9 @@ const SalesPage = () => {
                               </button>
                               <button
                                 type="button"
-                                className="btn btn-success mx-1"
+                                className="btn btn-success"
                                 onClick={() => {
-                                  handleUpdateStatusSedangDikirim(
-                                    transaction.id
-                                  );
+                                  handleUpdateStatusSelesai(transaction.id);
                                 }}
                               >
                                 <ImCheckmark />
@@ -130,11 +126,12 @@ const SalesPage = () => {
                                               type="button"
                                               className="btn btn-primary mx-1"
                                               data-bs-toggle="modal"
-                                              data-bs-target="#modalSales"
-                                              onClick={()=>{
-                                                const data = findTransactionCustomer(
-                                                  child.id
-                                                );
+                                              data-bs-target="#modalCourier"
+                                              onClick={() => {
+                                                const data =
+                                                  findTransactionCustomer(
+                                                    child.id
+                                                  );
                                                 setTransactionCustomer(
                                                   child.transaction_details
                                                 );
@@ -146,7 +143,7 @@ const SalesPage = () => {
                                               type="button"
                                               className="btn btn-success"
                                               onClick={() => {
-                                                handleUpdateStatusSedangDikirim(
+                                                handleUpdateStatusSelesai(
                                                   child.id
                                                 );
                                               }}
@@ -175,7 +172,7 @@ const SalesPage = () => {
             </div>
           </div>
         </div>
-        <ModalSales transactionCustomer={transactionCustomer} />
+        <ModalCourier transactionCustomer={transactionCustomer} />
         <Footer />
       </main>
     </>

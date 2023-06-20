@@ -102,6 +102,8 @@ const AddCartPage = () => {
         <main>
           <section className="vh-100 d-flex align-items-start justify-content-center my-5">
             <div className="container">
+            <h3>Kasir</h3>
+            <hr/>
               <div className="row align-items-start justify-content-start">
                 <div className="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-left flex">
                   <div className="mb-3 row">
@@ -186,7 +188,7 @@ const AddCartPage = () => {
                 </div>
 
                 <div className="col-12 col-lg-6 order-1 order-lg-2 text-end d-flex flex-column align-items-end justify-content-end">
-                  <h6>Total Price</h6>
+                  <h6>Total harga</h6>
                   <h4>
                     <b>{rupiah(totalPrice)}</b>
                   </h4>

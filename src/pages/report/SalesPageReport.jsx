@@ -6,16 +6,15 @@ import title from "../../utils/const/title";
 import useTransactions from "../../hooks/useTransactions";
 import { ImArrowDown2, ImCheckmark } from "react-icons/im";
 import { updateStatusSedangDikirim } from "../../utils/api/transaction";
-import ModalSales from "../../components/modals/transaction/ModalSales";
+import ModalReportSales from "../../components/modals/report/ModalReportSales";
 
 const requestBody = {
-  status: "sedang dikemas",
+  status: "selesai",
 };
 
-const SalesPage = () => {
+const SalesPageReport = () => {
   const { transactions } = useTransactions(requestBody);
   const [transactionCustomer, setTransactionCustomer] = useState({});
-
   useEffect(() => {
     document.title = title.sales;
   }, []);
@@ -26,20 +25,13 @@ const SalesPage = () => {
     );
   };
 
-  const handleUpdateStatusSedangDikirim = async (transactionId) => {
-    const response = await updateStatusSedangDikirim(transactionId);
-    if (!response.error) {
-      alert(response.message);
-    }
-  };
-
   return (
     <>
       <SideBar />
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-          <h3 className="card-header">Transaksi pembeli</h3>
+          <h3 className="card-header">Laporan penjualan</h3>
           <div className="card-body">
             <div className="table-responsive">
               <table className="table table-striped" style={{ width: "100%" }}>
@@ -50,13 +42,15 @@ const SalesPage = () => {
                     <th>Status</th>
                     <th>Pembeli</th>
                     <th>Tanggal pesanan</th>
-                    <th>Action</th>
+                    <th>Tanggal slesai</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   {transactions.data != undefined ? (
                     transactions.data.map((transaction, key) => {
-                      const date = new Date(transaction.created_at);
+                      const createdDate = new Date(transaction.created_at);
+                      const updatedDate = new Date(transaction.updated_at);
                       return (
                         <>
                           <tr key={`transaction-${key}`}>
@@ -64,7 +58,8 @@ const SalesPage = () => {
                             <td>{transaction.invoice}</td>
                             <td>{transaction.status}</td>
                             <td>{transaction.customer.full_name}</td>
-                            <td>{date.toDateString()}</td>
+                            <td>{createdDate.toDateString()}</td>
+                            <td>{updatedDate.toDateString()}</td>
 
                             <td>
                               <button
@@ -77,17 +72,6 @@ const SalesPage = () => {
                               >
                                 <ImArrowDown2 />
                               </button>
-                              <button
-                                type="button"
-                                className="btn btn-success mx-1"
-                                onClick={() => {
-                                  handleUpdateStatusSedangDikirim(
-                                    transaction.id
-                                  );
-                                }}
-                              >
-                                <ImCheckmark />
-                              </button>
                             </td>
                           </tr>
                           <tr
@@ -95,7 +79,7 @@ const SalesPage = () => {
                             id={`collapse-${key}`}
                             key={`collapse-${key}`}
                           >
-                            <td colSpan="5">
+                            <td colSpan="7">
                               <table
                                 className="table"
                                 style={{ width: "100%" }}
@@ -107,14 +91,18 @@ const SalesPage = () => {
                                     <th>Status</th>
                                     <th>Pembeli</th>
                                     <th>Tanggal pesanan</th>
+                                    <th>Tanggal Selesai</th>
                                     <th>Aksi</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   {transaction.children != undefined ? (
                                     transaction.children.map((child, key) => {
-                                      const date = new Date(
+                                      const createdDate = new Date(
                                         transaction.created_at
+                                      );
+                                      const updatedDate = new Date(
+                                        transaction.updated_at
                                       );
 
                                       return (
@@ -123,15 +111,16 @@ const SalesPage = () => {
                                           <td>{child.invoice}</td>
                                           <td>{child.status}</td>
                                           <td>{child.customer.full_name}</td>
-                                          <td>{date.toDateString()}</td>
+                                          <td>{updatedDate.toDateString()}</td>
+                                          <td>{createdDate.toDateString()}</td>
 
                                           <td>
                                             <button
                                               type="button"
                                               className="btn btn-primary mx-1"
                                               data-bs-toggle="modal"
-                                              data-bs-target="#modalSales"
-                                              onClick={()=>{
+                                              data-bs-target="#modalReportSales"
+                                              onClick={() => {
                                                 const data = findTransactionCustomer(
                                                   child.id
                                                 );
@@ -141,17 +130,6 @@ const SalesPage = () => {
                                               }}
                                             >
                                               <i className="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button
-                                              type="button"
-                                              className="btn btn-success"
-                                              onClick={() => {
-                                                handleUpdateStatusSedangDikirim(
-                                                  child.id
-                                                );
-                                              }}
-                                            >
-                                              <ImCheckmark />
                                             </button>
                                           </td>
                                         </tr>
@@ -175,11 +153,13 @@ const SalesPage = () => {
             </div>
           </div>
         </div>
-        <ModalSales transactionCustomer={transactionCustomer} />
+        <ModalReportSales 
+          transactionCustomer={transactionCustomer}  
+        />
         <Footer />
       </main>
     </>
   );
 };
 
-export default SalesPage;
+export default SalesPageReport;

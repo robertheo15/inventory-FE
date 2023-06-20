@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
-
+import SideBar from "../../components/navigation/SideBar";
 import TopNavigation from "../../components/Navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
-import SideBar from "../../components/navigation/SideBar";
 import title from "../../utils/const/title";
-import { ImCheckmark } from "react-icons/im";
-import ModalExpense from "../../components/modals/transaction/ModalExpense";
+
+import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
+import ModalReportExpense from "../../components/modals/report/ModalReportExpense";
 
 const requestBody = {
-  status: "sedang dikirim",
+  status: "selesai",
 };
 
-const OrderSupplierPage = () => {
+const OrderSupplierReportPage = () => {
   const { transactionSuppliers } = useTransactionsSuppliers(requestBody);
   const [transactionSupplier, setTransactionSupplier] = useState({});
+
   useEffect(() => {
-    document.title = title.sales;
+    document.title = title.orderReport;
   }, []);
 
   const findTransactionSupplier = (transactionSupplierId) => {
@@ -24,13 +24,16 @@ const OrderSupplierPage = () => {
       (transaction) => transaction.id === transactionSupplierId
     );
   };
+
+
+
   return (
     <>
       <SideBar />
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-          <h3 className="card-header">Transaksi ke supplier</h3>
+        <h3 className="card-header">Laporan pesanan ke supplier</h3>
           <div className="card-body">
             <div className="table-responsive">
               <table className="table table-striped" style={{ width: "100%" }}>
@@ -38,29 +41,33 @@ const OrderSupplierPage = () => {
                   <tr>
                     <th>No</th>
                     <th>Invoice</th>
-                    <th>Supplier</th>
                     <th>Status</th>
+                    <th>Supplier</th>
                     <th>Tanggal pesanan</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {transactionSuppliers.data != undefined
-                    ? transactionSuppliers.data.map((transaction, key) => {
-                        const date = new Date(transaction.created_at);
-                        return (
-                          <tr key={key}>
+                  {transactionSuppliers.data != undefined ? (
+                    transactionSuppliers.data.map((transaction, key) => {
+                      const createdDate = new Date(transaction.created_at);
+                      const updatedDate = new Date(transaction.updated_at);
+                      return (
+                        <>
+                          <tr key={`transaction-${key}`}>
                             <td>{key + 1}</td>
                             <td>{transaction.invoice}</td>
-                            <td>{transaction.supplier.brand_name}</td>
                             <td>{transaction.status}</td>
-                            <td>{date.toDateString()}</td>
+                            <td>{transaction.supplier.brand_name}</td>
+                            <td>{createdDate.toDateString()}</td>
+                            <td>{updatedDate.toDateString()}</td>
+
                             <td>
                               <button
                                 type="button"
-                                className="btn btn-primary view_data"
+                                className="btn btn-primary mx-1"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modalExpense"
+                                data-bs-target="#modalReportExpense"
                                 onClick={() => {
                                   const data = findTransactionSupplier(
                                     transaction.id
@@ -70,27 +77,26 @@ const OrderSupplierPage = () => {
                               >
                                 <i className="bi bi-pencil-square"></i>
                               </button>
-                              <button
-                                type="button"
-                                className="btn btn-success mx-1"
-                              >
-                                <ImCheckmark />
-                              </button>
                             </td>
                           </tr>
-                        );
-                      })
-                    : ""}
+                        </>
+                      );
+                    })
+                  ) : (
+                    <tr></tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <ModalExpense transactionSupplier={transactionSupplier} />
+        <ModalReportExpense
+          transactionSupplier={transactionSupplier}
+        />
         <Footer />
       </main>
     </>
   );
 };
 
-export default OrderSupplierPage;
+export default OrderSupplierReportPage;
