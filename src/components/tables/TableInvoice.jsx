@@ -7,7 +7,7 @@ const TableInvoice = ({ transactionChildren }) => {
       <div className="col-12">
         {transactionChildren?.map((child, key) => {
           return (
-            <>
+            <div key={key}>
               <h6 key={key}>
                 <b>{child.invoice}</b>
               </h6>
@@ -37,7 +37,7 @@ const TableInvoice = ({ transactionChildren }) => {
                   </tbody>
                 </table>
               </div>
-            </>
+            </div>
           );
         })}
       </div>

@@ -9,14 +9,15 @@ const TableOrders = ({ transactionDetails, setTransactionDetails }) => {
       const updatedTransactionDetails = transactionDetails.filter(
         (_, i) => i !== index
       );
-      setTransactionDetails(updatedTransactionDetails);      console.log(response);
+      setTransactionDetails(updatedTransactionDetails);
+      // console.log(response);
       if (!response.error) {
         alert(response.message);
         setProduct("");
       }
     }
-  };  
-  
+  };
+
   return (
     <>
       <div className="table-responsive">
@@ -63,7 +64,7 @@ const TableOrders = ({ transactionDetails, setTransactionDetails }) => {
                     </tr>
                   );
                 })
-              : ""}
+              : <></>}
           </tbody>
         </table>
       </div>

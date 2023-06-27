@@ -5,10 +5,15 @@ import ModalProductEdit from "../modals/ModalProductEdit";
 const TableProductVariants = ({
   productVariants,
   handleDeleteProductVariant,
-  // products,
+  setProductVariant,
   // handleUpdateProduct,
   // handleDeleteProduct,
 }) => {
+
+  const findProductVariant = (productVariantId) => {
+    return productVariants.data.find((productVariant) => productVariant.id === productVariantId);
+  };
+
   return (
     <div className="table-responsive">
       <table
@@ -20,7 +25,7 @@ const TableProductVariants = ({
           <tr>
             <th>No</th>
             <th>Nama produk</th>
-            <th>Nama produk variant</th>
+            <th>Nama produk varianw</th>
             <th>Warna</th>
             <th>Lokasi</th>
             <th>Stok</th>
@@ -54,9 +59,10 @@ const TableProductVariants = ({
                         type="button"
                         className="btn btn-primary"
                         data-bs-toggle="modal"
-                        data-bs-target="#modalProductEdit"
+                        data-bs-target="#modalProductVariantEdit"
                         onClick={() => {
-                          setProduct(product);
+                          console.log(productVariant)
+                          setProductVariant(productVariant);
                         }}
                       >
                         <i className="bi bi-pencil-square"></i>
