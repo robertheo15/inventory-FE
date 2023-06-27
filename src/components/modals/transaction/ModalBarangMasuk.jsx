@@ -3,7 +3,7 @@ import useProducts from "../../../hooks/useProducts";
 import useProductVariants from "../../../hooks/useProductVariants";
 import rupiah from "../../../utils/helper";
 
-const ModalExpense = ({ transactionSupplier }) => {
+const ModalBarangMasuk = ({ transactionSupplier }) => {
   const { products } = useProducts();
   const { productVariants } = useProductVariants();
   // console.log(transactionSupplier);
@@ -22,15 +22,15 @@ const ModalExpense = ({ transactionSupplier }) => {
   return (
     <div
       className="modal fade"
-      id="modalExpense"
+      id="modalBarangMasuk"
       tabIndex="-1"
-      aria-labelledby="modalExpenseLabel"
+      aria-labelledby="modalBarangMasukLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="modalExpenseLabel">
+            <h5 className="modal-title" id="modalBarangMasukLabel">
               Detail transaksi
             </h5>
             <button
@@ -95,4 +95,4 @@ const ModalExpense = ({ transactionSupplier }) => {
   );
 };
 
-export default ModalExpense;
+export default ModalBarangMasuk;

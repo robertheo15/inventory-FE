@@ -2,19 +2,13 @@ import React, { useState } from "react";
 import useProducts from "../../../hooks/useProducts";
 import { createProductVariant } from "../../../utils/api/productsVariant";
 
-const ModalProductAddProductVariant = ({
+const ModalAddProductVariant = ({
   productVariant,
   setProductVariant,
 }) => {
   const { products } = useProducts();
-  const [productVariants, setProductVariants] = useState([]);
-
-  // const findSupplier = (supplierId) => {
-  //   return suppliers.data.find((supplier) => supplier.id === supplierId);
-  // };
 
   const handleCreateProductVariant = async (productVariant) => {
-    console.log(productVariant);
     const productVariantrReqBody = {
       p_id: productVariant.p_id,
       pv_id: "",
@@ -217,4 +211,4 @@ const ModalProductAddProductVariant = ({
   );
 };
 
-export default ModalProductAddProductVariant;
+export default ModalAddProductVariant;

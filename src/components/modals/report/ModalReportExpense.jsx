@@ -6,16 +6,16 @@ import rupiah from "../../../utils/helper";
 const ModalReportExpense = ({ transactionSupplier }) => {
   const { products } = useProducts();
   const { productVariants } = useProductVariants();
-  console.log(transactionSupplier);
+  // console.log(transactionSupplier);
 
   const findProduct = (productId) => {
     return products.data.find((product) => product.id === productId);
   };
 
   const findProductVariant = (variantId) => {
-    console.log(
-      productVariants.data.find((variant) => variant.id === variantId)
-    );
+    // console.log(
+    //   productVariants.data.find((variant) => variant.id === variantId)
+    // );
     return productVariants.data.find((variant) => variant.id === variantId);
   };
 
@@ -57,7 +57,7 @@ const ModalReportExpense = ({ transactionSupplier }) => {
                     <th scope="col">Harga</th>
                     <th scope="col">Total harga</th>
                     <th scope="col">Tanggal pesanan</th>
-                    <th scope="col">Tanggal pesanan sampai</th>
+                    <th scope="col">Tanggal sampai</th>
                   </tr>
                 </thead>
                 <tbody>

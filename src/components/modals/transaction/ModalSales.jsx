@@ -17,6 +17,7 @@ const ModalSales = ({ transactionCustomer }) => {
     );
     return productVariants.data.find((variant) => variant.id === variantId);
   };
+  console.log(transactionCustomer)
 
   return (
     <div

@@ -1,20 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import useProducts from "../../../hooks/useProducts";
-import { createProductVariant } from "../../../utils/api/productsVariant";
+import { updateProductVariantById } from "../../../utils/api/productsVariant";
 
-const ModalProductAddProductVariant = ({
-  productVariant,
-  setProductVariant,
-}) => {
-  const { products } = useProducts();
-  const [productVariants, setProductVariants] = useState([]);
-
-  // const findSupplier = (supplierId) => {
-  //   return suppliers.data.find((supplier) => supplier.id === supplierId);
-  // };
-
-  const handleCreateProductVariant = async (productVariant) => {
-    // console.log(productVariant);
+const ModalEditProductVariant = ({ productVariant, setProductVariant }) => {
+  const handleUpdateProductVariant = async (productVariant) => {
     const productVariantrReqBody = {
       p_id: productVariant.p_id,
       pv_id: "",
@@ -23,7 +12,7 @@ const ModalProductAddProductVariant = ({
       stock: parseFloat(),
       type: productVariant.type,
     };
-    const response = await createProductVariant(productVariantrReqBody);
+    const response = await updateProductVariantById(productVariantrReqBody);
     if (!response.error) {
       alert(response.message);
       setProductVariant("");
@@ -33,16 +22,16 @@ const ModalProductAddProductVariant = ({
   return (
     <div
       className="modal fade"
-      id="modalProductVariant"
+      id="modalProductVariantEdit"
       tabIndex="-1"
-      aria-labelledby="modalProductVariant"
+      aria-labelledby="modalProductVariantEdit"
       aria-hidden="true"
     >
       <div className="modal-dialog modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="modalProductVariant">
-              Tambah produk varian
+            <h5 className="modal-title" id="modalProductVariantEdit">
+              Ubah produk varian
             </h5>
             <button
               type="button"
@@ -62,25 +51,13 @@ const ModalProductAddProductVariant = ({
                     <label htmlFor="suppliers">Produk</label>
                   </div>
                   <div className="col-sm-10">
-                    <select
+                    <input
+                      type="text"
                       className="form-control"
-                      id="suppliers"
-                      onChange={(e) => {
-                        setProductVariant({
-                          ...productVariant,
-                          p_id: e.target.value,
-                        });
-                      }}
-                    >
-                      <option value={""}>pilih produk</option>
-                      {products.data != undefined
-                        ? products.data.map((product, key) => (
-                            <option key={key} value={product.id}>
-                              {product.name}
-                            </option>
-                          ))
-                        : ""}
-                    </select>
+                      id="inputNama"
+                      value={productVariant.product_name || ""}
+                      disabled
+                    />
                   </div>
                 </div>
               </div>
@@ -96,7 +73,7 @@ const ModalProductAddProductVariant = ({
                   type="text"
                   className="form-control"
                   id="inputNama"
-                  value={productVariant.name}
+                  value={productVariant.name || "-"}
                   onChange={(e) => {
                     setProductVariant({
                       ...productVariant,
@@ -117,7 +94,7 @@ const ModalProductAddProductVariant = ({
                   type="text"
                   className="form-control"
                   id="inputBrabnd"
-                  value={productVariant.colour}
+                  value={productVariant.colour || ""}
                   onChange={(e) => {
                     setProductVariant({
                       ...productVariant,
@@ -138,7 +115,7 @@ const ModalProductAddProductVariant = ({
                   type="number"
                   className="form-control"
                   id="inputStock"
-                  value={productVariant.stock}
+                  value={productVariant.stock || ""}
                   onChange={(e) => {
                     setProductVariant({
                       ...productVariant,
@@ -158,20 +135,13 @@ const ModalProductAddProductVariant = ({
                 Lokasi
               </label>
               <div className="col-sm-10">
-                <select
+                <input
+                  type="text"
                   className="form-control"
-                  id="suppliers"
-                  onChange={(e) => {
-                    setProductVariant({
-                      ...productVariant,
-                      location: e.target.value,
-                    });
-                  }}
-                >
-                  <option value={""}>pilih lokasi</option>
-                  <option value={"gudang"}>Gudang</option>
-                  <option value={"toko"}>Toko</option>
-                </select>
+                  id="inputNama"
+                  value={productVariant.location || ""}
+                  disabled
+                />
               </div>
             </div>
             <div className="mb-3 row">
@@ -182,19 +152,13 @@ const ModalProductAddProductVariant = ({
                 Tipe produk varian
               </label>
               <div className="col-sm-10">
-                <select
+                <input
+                  type="text"
                   className="form-control"
-                  id="suppliers"
-                  onChange={(e) => {
-                    setProductVariant({
-                      ...productVariant,
-                      type: e.target.value,
-                    });
-                  }}
-                >
-                  <option value={""}>pilih tipe</option>
-                  <option value={"parent"}>Stock grosir</option>
-                </select>
+                  id="inputNama"
+                  value={productVariant.type || ""}
+                  disabled
+                />
               </div>
             </div>
             {/* End Fill Input Modals */}
@@ -208,7 +172,7 @@ const ModalProductAddProductVariant = ({
                 handleCreateProductVariant(productVariant);
               }}
             >
-              Tambah produk varian
+              Ubah produk varian
             </button>
           </div>
         </div>
@@ -217,4 +181,4 @@ const ModalProductAddProductVariant = ({
   );
 };
 
-export default ModalProductAddProductVariant;
+export default ModalEditProductVariant;
