@@ -22,7 +22,7 @@ const ModalProductAdd = ({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="modalProductsLabel">
-              Add Products
+              Tambah produk
             </h5>
             <button
               type="button"
@@ -218,7 +218,7 @@ const ModalProductAdd = ({
                 handleCreateProduct(product);
               }}
             >
-              Add to Cart
+              Tambah
             </button>
           </div>
         </div>

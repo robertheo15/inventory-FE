@@ -4,24 +4,24 @@ import rupiah from "../../utils/helper";
 import { getProductVariantsByProductId } from "../../utils/api/productsVariant";
 
 const ModalCart = ({
+  customerId,
   transactionParent,
   setTransactionParent,
   transactionChild,
   setTransactionChild,
-  transactionDetails,
-  setTransactionDetails,
+  transaction_details,
+  setTransaction_details,
   transactionDetail,
   setTransactionDetail,
 }) => {
   const { products } = useProducts();
   const [productVariants, setProductVariants] = useState([]);
   // const [transactionDetail, setTransactionDetail] = useState(newTransactionDetail);
-  console.log(productVariants);
   const handleRemoveTransactionDetail = (index) => {
-    const updatedTransactionDetails = transactionDetails.filter(
+    const updatedtransaction_details = transaction_details.filter(
       (_, i) => i !== index
     );
-    setTransactionDetails(updatedTransactionDetails);
+    setTransaction_details(updatedtransaction_details);
   };
 
   const findProducts = (productId) => {
@@ -67,23 +67,27 @@ const ModalCart = ({
                     const product = findProducts(e.target.value);
                     setTransactionDetail({
                       ...transactionDetail,
+                      c_id: customerId,
                       product: product,
+                      product_id: e.target.value,
                       // product_name: product.handleRemoveTransactionDetail
                     });
-                    
-                    getProductVariantsByProductId(e.target.value).then((result) =>
-                      setProductVariants(result)
+
+                    getProductVariantsByProductId(e.target.value).then(
+                      (result) => setProductVariants(result)
                     );
                   }}
                 >
                   <option value={""}>Pilih produk</option>
-                  {products.data != undefined
-                    ? products.data.map((product, key) => (
-                        <option key={key} value={product.id}>
-                          {product.name}
-                        </option>
-                      ))
-                    : ""}
+                  {products.data != undefined ? (
+                    products.data.map((product, key) => (
+                      <option key={key} value={product.id}>
+                        {product.name}
+                      </option>
+                    ))
+                  ) : (
+                    <></>
+                  )}
                 </select>
               </div>
             </div>
@@ -101,18 +105,21 @@ const ModalCart = ({
                     setTransactionDetail({
                       ...transactionDetail,
                       productVariant: variant,
+                      product_variant_id: e.target.value,
                     });
                   }}
                 >
                   <option value={""}>Pilih produk varian</option>
-                  {productVariants.data != undefined
-                    ? productVariants.data.map((variant, key) => (
-                        <option
-                          key={key}
-                          value={variant.id}
-                        >{`${variant.name} ${variant.colour} - Stok ${variant.stock} - GUDANG`}</option>
-                      ))
-                    : ""}
+                  {productVariants.data != undefined ? (
+                    productVariants.data.map((variant, key) => (
+                      <option
+                        key={key}
+                        value={variant.id}
+                      >{`${variant.name} ${variant.colour} - Stok ${variant.stock} - GUDANG`}</option>
+                    ))
+                  ) : (
+                    <></>
+                  )}
                 </select>
               </div>
             </div>
@@ -130,7 +137,7 @@ const ModalCart = ({
                   onChange={(e) => {
                     setTransactionDetail({
                       ...transactionDetail,
-                      qty: e.target.value,
+                      qty: parseFloat(e.target.value),
                     });
                   }}
                 />
@@ -171,13 +178,15 @@ const ModalCart = ({
                   onChange={(e) => {
                     setTransactionDetail({
                       ...transactionDetail,
-                      deliveryOption: e.target.value,
+                      methode: e.target.value,
                     });
+                    // console.log(transactionDetail);
                   }}
                 >
                   <option value={""}>Pilih metode</option>
                   <option value={"pick-up"}>Pick up</option>
                   <option value={"pengiriman"}>Pengiriman</option>
+                  <option value={"indent"}>Indent</option>
                 </select>
               </div>
             </div>
@@ -187,15 +196,17 @@ const ModalCart = ({
                 className="btn btn-primary ms-auto"
                 style={{ width: "fit-content" }}
                 onClick={() => {
-                  // console.log(transactionDetail);
-                  if (Object.keys(transactionDetail.product).length === 0) {
+                  if (
+                    Object.keys(transactionDetail.product).length === 0 &&
+                    transactionParent.detail == undefined &&
+                    transactionParent.detail == null
+                  ) {
                     alert("Tambah produk terlebih dahulu!");
                   } else {
-                    setTransactionDetails([
-                      ...transactionDetails,
+                    setTransaction_details([
+                      ...transaction_details,
                       transactionDetail,
                     ]);
-                    console.log(transactionDetails);
                   }
                 }}
               >
@@ -212,44 +223,46 @@ const ModalCart = ({
                     <th scope="col">#</th>
                     <th scope="col">Product</th>
                     <th scope="col">Qty</th>
+                    <th scope="col">Metode</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Total harga</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {transactionDetails != undefined
-                    ? transactionDetails.map((detail, key) => {
-                        return (
-                          <tr key={key}>
-                            <th scope="row">{key + 1}</th>
-                            <td>{`${detail.product.name} ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>
-                            <td>{detail.qty}</td>
-                            <td>{rupiah(detail.price)}</td>
-                            <td>{rupiah(detail.price * detail.qty)}</td>
-                            <td>
-                              <button
-                                type="submit"
-                                className="btn btn-danger mx-1"
-                                onClick={() =>
-                                  handleRemoveTransactionDetail(key)
-                                }
-                              >
-                                <i className="bi bi-trash-fill"></i>
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-primary"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalPreview"
-                              >
-                                <i className="bi bi-pencil-square"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        );
-                      })
-                    : ""}
+                  {transaction_details != undefined ? (
+                    transaction_details.map((detail, key) => {
+                      return (
+                        <tr key={key}>
+                          <th scope="row">{key + 1}</th>
+                          <td>{`${detail.product.name} ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>
+                          <td>{detail.qty}</td>
+                          <td>{detail.methode}</td>
+                          <td>{rupiah(detail.price)}</td>
+                          <td>{rupiah(detail.price * detail.qty)}</td>
+                          <td>
+                            <button
+                              type="submit"
+                              className="btn btn-danger mx-1"
+                              onClick={() => handleRemoveTransactionDetail(key)}
+                            >
+                              <i className="bi bi-trash-fill"></i>
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-primary"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalPreview"
+                            >
+                              <i className="bi bi-pencil-square"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -258,10 +271,10 @@ const ModalCart = ({
 
           <div className="d-flex justify-content-end px-3">
             <h6 className="me-2">Total harga: </h6>
-            {transactionDetails.length > 0 ? (
+            {transaction_details.length > 0 ? (
               <h6 className="fw-bolder">
                 {rupiah(
-                  transactionDetails.reduce(
+                  transaction_details.reduce(
                     (total, transactionDetail) =>
                       total + transactionDetail.qty * transactionDetail.price,
                     0
@@ -286,7 +299,7 @@ const ModalCart = ({
               className="btn btn-primary"
               data-bs-dismiss="modal"
               onClick={() => {
-                if (transactionDetails == 0) {
+                if (transaction_details == 0) {
                   alert("isi keranjang terlebih dahulu!");
                 } else {
                   setTransactionParent((prevState) => ({
@@ -294,18 +307,21 @@ const ModalCart = ({
                     children: [
                       ...prevState.children,
                       {
+                        c_id : customerId,
                         invoice: `KRSX-${Date.now()}`,
-                        transactionDetails: transactionDetails,
-                        totalPrice: transactionDetails.reduce(
+                        transaction_details: transaction_details,
+                        totalPrice: transaction_details.reduce(
                           (total, transactionDetail) =>
                             total +
                             transactionDetail.qty * transactionDetail.price,
                           0
                         ),
-                        deliveryOption: transactionDetails[0].deliveryOption,
+                        methode: transaction_details[0].methode,
                       },
                     ],
                   }));
+                  setTransaction_details([]);
+                  setTransactionDetail({});
                 }
               }}
             >

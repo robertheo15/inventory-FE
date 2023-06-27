@@ -12,9 +12,9 @@ const ModalCourier = ({ transactionCustomer }) => {
   };
 
   const findProductVariant = (variantId) => {
-    console.log(
-      productVariants.data.find((variant) => variant.id === variantId)
-    );
+    // console.log(
+    //   productVariants.data.find((variant) => variant.id === variantId)
+    // );
     return productVariants.data.find((variant) => variant.id === variantId);
   };
 

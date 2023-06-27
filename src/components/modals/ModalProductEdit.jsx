@@ -13,7 +13,7 @@ const ModalProductEdit = ({ product, setProduct, handleUpdateProduct }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="modalProductEditLabel">
-              Add Products
+              Ubah produk
             </h5>
             <button
               type="button"

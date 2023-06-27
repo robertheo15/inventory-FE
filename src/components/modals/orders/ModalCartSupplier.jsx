@@ -18,6 +18,7 @@ const ModalCartSupplier = ({
 }) => {
   const { suppliers } = useSuppliers();
   const [products, setProducts] = useState([]);
+  // const { products } = useProducts();
   const [productVariants, setProductVariants] = useState([]);
   const [transactionDetail, setTransactionDetail] = useState({});
 
@@ -84,6 +85,7 @@ const ModalCartSupplier = ({
                     getProductsBySupplierId(e.target.value).then((products) => {
                       setProducts(products);
                     });
+                    console.log(products);
                   }}
                 >
                   <option value={""}>Pilih supplier</option>
@@ -192,7 +194,7 @@ const ModalCartSupplier = ({
                     setTransactionDetail({
                       ...transactionDetail,
                       price: e.target.value,
-                      totalPrice : transactionDetail.qty * e.target.value
+                      totalPrice: transactionDetail.qty * e.target.value,
                     });
                   }}
                 />
@@ -236,7 +238,7 @@ const ModalCartSupplier = ({
                   ...transactionDetails,
                   transactionDetail,
                 ]);
-                //   if (transactionDetails == 0) {
+                //   if (transactionDetails.length == 0) {
                 //     alert("isi keranjang terlebih dahulu!");
                 //   } else {
                 //     setTransactionParent((prevState) => ({
