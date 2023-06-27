@@ -1,7 +1,7 @@
 import React from "react";
 import {
   ImList2,
-  ImStatsDots,
+  ImUser,
   ImCoinDollar,
   ImWrench,
   ImBook,
@@ -114,6 +114,15 @@ const SideBar = () => (
                 <ImCreditCard />
               </span>
               <span className="sidebar-text">Kurir</span>
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a href="/customers" className="nav-link">
+              <span className="sidebar-icon">
+                <ImUser />
+              </span>
+              <span className="sidebar-text">Pelanggan</span>
             </a>
           </li>
 
@@ -316,11 +325,11 @@ const SideBar = () => (
               aria-expanded="false"
             >
               <ul className="flex-column nav">
-                <li className="nav-item ">
+                {/* <li className="nav-item ">
                   <a className="nav-link" href="/prices">
                     <span className="sidebar-text">Harga</span>
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item ">
                   <a className="nav-link" href="/profile">
                     <span className="sidebar-text">Profil</span>
