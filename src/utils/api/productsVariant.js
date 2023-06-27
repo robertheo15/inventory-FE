@@ -1,12 +1,17 @@
 import axios from "axios";
 import BASE_URL from "../const/api-const";
+import token from "../const/token";
 
 const createProductVariant = async (productVariant) => {
   try {
-    console.log(productVariant);
     const response = await axios.post(
       `${BASE_URL}/products/variants`,
-      productVariant
+      productVariant,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -14,10 +19,15 @@ const createProductVariant = async (productVariant) => {
   }
 };
 
-const getProductVariantsByProductId = async (product_id) => {
+const getProductVariantsByProductId = async (productId) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/products/${product_id}/variants`
+      `${BASE_URL}/products/${productId}/variants`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -27,7 +37,11 @@ const getProductVariantsByProductId = async (product_id) => {
 
 const getProductVariants = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/products/variants`);
+    const response = await axios.get(`${BASE_URL}/products/variants`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     return { error: true, data: null };
@@ -36,10 +50,33 @@ const getProductVariants = async () => {
 
 const getProductVariantById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/products/variants/${id}`,
-    {
-      id: id,
-    }
+    const response = await axios.get(
+      `${BASE_URL}/products/variants/${id}`,
+      {
+        id: id,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
+const updateProductVariantById = async (productVariant) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/products/variants`,
+      productVariant,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -53,6 +90,11 @@ const deleteProductVariantById = async (productVariantId) => {
       `${BASE_URL}/products/variants/${productVariantId}`,
       {
         id: productVariantId,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }
     );
     return response.data;
@@ -66,5 +108,6 @@ export {
   getProductVariantsByProductId,
   getProductVariantById,
   getProductVariants,
+  updateProductVariantById,
   deleteProductVariantById,
 };

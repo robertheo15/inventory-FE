@@ -1,11 +1,17 @@
 import axios from "axios";
 import BASE_URL from "../const/api-const";
+import token from "../const/token";
 
 const createTransactions = async (transactionRequestBody) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/transactions`,
-      transactionRequestBody
+      transactionRequestBody,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -17,7 +23,12 @@ const getTransactions = async (requestBody) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/transactions/status`,
-      requestBody
+      requestBody,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -29,7 +40,12 @@ const getTransactions = async (requestBody) => {
 const updateStatusSedangDikirim = async (transactionId) => {
   try {
     const response = await axios.post(
-      `${BASE_URL}/transactions/sends/${transactionId}`
+      `${BASE_URL}/transactions/sends/${transactionId}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     console.log(response);
     return response.data;
@@ -42,9 +58,13 @@ const updateStatusSedangDikirim = async (transactionId) => {
 const updateStatusSelesai = async (transactionId) => {
   try {
     const response = await axios.post(
-      `${BASE_URL}/transactions/finish/${transactionId}`
+      `${BASE_URL}/transactions/finish/${transactionId}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(error);
