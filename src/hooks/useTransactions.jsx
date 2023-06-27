@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getTransactions } from "../utils/api/transaction";
 
 
-const useTransactions = (requestBody) => {
+const useTransactions = (requestBody, token) => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
