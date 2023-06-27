@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import title from "../../utils/const/title";
 import SideBar from "../../components/navigation/SideBar";
 import TopNavigation from "../../components/Navigation/TopNavigation";
@@ -29,20 +28,16 @@ const CustomerPage = () => {
               data-bs-target="#modalCustomer"
             >
               <i className=" bi bi-person-fill-add me-2"></i>
-              Add Admin
+              Tambah pelanggan
             </button>
           </div>
           <div className="card-body">
             <div className="table-responsive">
-              <table
-                id="myTable"
-                className="table table-striped"
-                style={{ width: "100%" }}
-              >
+              <table className="table table-striped" style={{ width: "100%" }}>
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Customer</th>
+                    <th>nama pelanggan</th>
                     <th>No hp</th>
                     <th>Alamat email</th>
                     <th>Alamat</th>
@@ -52,27 +47,19 @@ const CustomerPage = () => {
                 <tbody>
                   {customers.data != undefined
                     ? customers.data.map((customer, key) => {
-                      console.log(customer);
+                        console.log(customer);
                         return (
                           <tr key={key}>
-                            <td>{key+1}</td>
+                            <td>{key + 1}</td>
                             <td>{customer.full_name}</td>
                             <td>{customer.phone_number}</td>
                             <td>{customer.email}</td>
                             <td>{customer.address}</td>
                             <td>
-                              <form
-                                action=""
-                                method="POST"
-                                className="d-inline"
-                              >
-                                <button
-                                  type="submit"
-                                  className="btn btn-danger"
-                                >
-                                  <i className="bi bi-trash-fill"></i>
-                                </button>
-                              </form>
+                              <button type="submit" className="btn btn-danger mx-1">
+                                <i className="bi bi-trash-fill "></i>
+                              </button>
+
                               <a id="" className="btn btn-primary view_data">
                                 <i className="bi bi-pencil-square"></i>
                               </a>
@@ -86,13 +73,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </main>
-      <HelmetProvider>
-        <Helmet>
-          <script src="/js/dataTable.js" type="text/javascript" />
-        </Helmet>
-      </HelmetProvider>
       <ModalCustomer />
     </>
   );

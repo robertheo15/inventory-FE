@@ -156,7 +156,6 @@ const DashboardPage = () => {
         </div>
     
       </div>
-    <Footer/>
     </main>
     </>
   )

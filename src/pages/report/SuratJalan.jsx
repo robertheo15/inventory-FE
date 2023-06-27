@@ -11,7 +11,6 @@ const TravelDocument = () => {
             <main className="content">
                 <TopNavigation/>
                 <TableDocs/>
-                <Footer/>
             </main>
         </>
     )

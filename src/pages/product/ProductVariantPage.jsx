@@ -7,8 +7,9 @@ import ModalProducts from "../../components/modals/ModalProductAdd";
 import ModalItem from "../../components/modals/ModalItem";
 import useProductVariants from "../../hooks/useProductVariants";
 import TableProductVariants from "../../components/tables/TableProductVariants";
-import ModalProductAddProductVariant from "../../components/modals/productVariant/ModalAddProductVariant";
 import { deleteProductVariantById } from "../../utils/api/productsVariant";
+import ModalAddProductVariant from "../../components/modals/productVariant/ModalAddProductVariant";
+import ModalEditProductVariant from "../../components/modals/productVariant/ModalEditProductVariant";
 
 const ProductVariantPage = () => {
   const { productVariants } = useProductVariants();
@@ -36,7 +37,7 @@ const ProductVariantPage = () => {
 
         <div className="row my-5">
           <div className="col-6">
-            <h2 className="fw-bold mb-3">Tambah produk varian</h2>
+            <h2 className="fw-bold mb-3">Produk varian</h2>
             <button
               type="button"
               className="btn btn-primary"
@@ -52,21 +53,24 @@ const ProductVariantPage = () => {
           <div className="col-12">
             <TableProductVariants
               productVariants={productVariants}
+              setProductVariant={setProductVariant}
               handleDeleteProductVariant={handleDeleteProductVariant}
             />
           </div>
         </div>
 
         {/* Modal Products */}
-        <ModalProductAddProductVariant
+        <ModalAddProductVariant
           productVariant={productVariant}
           setProductVariant={setProductVariant}
         />
 
         {/* Modal Item List */}
-        <ModalItem />
+        <ModalEditProductVariant
+          productVariant={productVariant}
+          setProductVariant={setProductVariant}
+        />
 
-        <Footer />
       </main>
     </>
   );

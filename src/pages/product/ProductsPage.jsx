@@ -21,8 +21,6 @@ const ProductsPage = () => {
   const { products } = useProducts();
   const { suppliers } = useSuppliers();
 
-  console.log(products);
-
   const handleCreateProduct = async (product) => {
     setProduct({
       ...product,
@@ -95,14 +93,14 @@ const ProductsPage = () => {
 
         <div className="row my-5">
           <div className="col-6">
-            <h2 className="fw-bold mb-3">Add Product</h2>
+            <h2 className="fw-bold mb-3">Produk</h2>
             <button
               type="button"
               className="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#modalProducts"
             >
-              Add Product
+              Tambah produk
             </button>
           </div>
         </div>
@@ -127,7 +125,6 @@ const ProductsPage = () => {
           suppliers={suppliers}
         />
 
-        <Footer />
       </main>
     </>
   );

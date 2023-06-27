@@ -6,6 +6,7 @@ import title from "../../utils/const/title";
 
 import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
 import ModalReportExpense from "../../components/modals/report/ModalReportExpense";
+import { ImClock } from "react-icons/im";
 
 const requestBody = {
   status: "selesai",
@@ -25,15 +26,50 @@ const OrderSupplierReportPage = () => {
     );
   };
 
-
-
   return (
     <>
       <SideBar />
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-        <h3 className="card-header">Laporan pesanan ke supplier</h3>
+          <h3 className="card-header">Laporan pesanan ke supplier</h3>
+          <div className="row align-items-start justify-content-start">
+            <div className="form-group mb-4 col-5 mx-3 mt-3 ">
+              <label htmlFor="email">Tanggal mulai</label>
+              <div className="input-group">
+                <span className="input-group-text" id="basic-addon1">
+                  <ImClock />
+                </span>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="dateFrom"
+                  name="dateFrom"
+                />
+              </div>
+            </div>
+
+            <div className="form-group mb-4 col-5 mx-3 mt-3">
+              <label htmlFor="email">Tanggal berakhir</label>
+              <div className="input-group">
+                <span className="input-group-text" id="basic-addon1">
+                  <ImClock />
+                </span>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="dateFrom"
+                  name="dateFrom"
+                />
+              </div>
+            </div>
+            <div className="form-group mb-4 col-5 mx-3 mt-3">
+              <h6>Total pengeluaran</h6>
+              <h4>
+                <b>123</b>
+              </h4>
+            </div>
+          </div>
           <div className="card-body">
             <div className="table-responsive">
               <table className="table table-striped" style={{ width: "100%" }}>
@@ -90,10 +126,7 @@ const OrderSupplierReportPage = () => {
             </div>
           </div>
         </div>
-        <ModalReportExpense
-          transactionSupplier={transactionSupplier}
-        />
-        <Footer />
+        <ModalReportExpense transactionSupplier={transactionSupplier} />
       </main>
     </>
   );

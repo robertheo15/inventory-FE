@@ -61,7 +61,6 @@ const StockPage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </main>
       <HelmetProvider>
         <Helmet>

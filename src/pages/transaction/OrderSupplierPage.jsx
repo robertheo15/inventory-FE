@@ -87,7 +87,6 @@ const OrderSupplierPage = () => {
           </div>
         </div>
         <ModalExpense transactionSupplier={transactionSupplier} />
-        <Footer />
       </main>
     </>
   );

@@ -145,7 +145,7 @@ const AddCartPageSupplier = () => {
                     //   handleCreateTransaction(transactionParent);
                     // }}
                   >
-                    checkout
+                    Pesan ke supplier
                   </button>
                 </div>
               </div>
@@ -174,7 +174,6 @@ const AddCartPageSupplier = () => {
           </section>
         </main>
 
-        <Footer />
       </main>
       <HelmetProvider>
         <Helmet>

@@ -173,7 +173,6 @@ const SalesPage = () => {
           </div>
         </div>
         <ModalCourier transactionCustomer={transactionCustomer} />
-        <Footer />
       </main>
     </>
   );

@@ -61,7 +61,6 @@ const OrderSupplierReportPage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </main>
       <HelmetProvider>
         <Helmet>

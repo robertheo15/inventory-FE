@@ -61,7 +61,6 @@ const SalesReportPage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </main>
       <HelmetProvider>
         <Helmet>

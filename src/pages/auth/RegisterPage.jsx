@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 // import '../assets/css/volt.css'
-import title from '../utils/const/title';
-import BackToHomeBtn from '../components/button/BackToHomeBtn';
-import RegisterForm from '../components/form/RegisterForm';
+import title from '../../utils/const/title';
+import RegisterForm from '../../components/form/RegisterForm';
 
 const RegisterPage = () => {
 

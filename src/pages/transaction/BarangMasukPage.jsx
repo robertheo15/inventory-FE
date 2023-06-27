@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../../components/navigation/SideBar";
 import TopNavigation from "../../components/Navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
@@ -7,6 +7,7 @@ import useTransactions from "../../hooks/useTransactions";
 import { ImArrowDown2, ImCheckmark } from "react-icons/im";
 import { updateStatusSedangDikirim } from "../../utils/api/transaction";
 import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
+import ModalBarangMasuk from "../../components/modals/transaction/ModalBarangMasuk";
 
 const requestBody = {
   status: "sedang dikirim",
@@ -14,10 +15,17 @@ const requestBody = {
 
 const BarangMasukPage = () => {
   const { transactionSuppliers } = useTransactionsSuppliers(requestBody);
+  const [transactionSupplier, setTransactionSupplier] = useState({});
 
   useEffect(() => {
     document.title = title.salesReport;
   }, []);
+
+  const findTransactionSupplier = (transactionSupplierId) => {
+    return transactionSuppliers.data.find(
+      (transaction) => transaction.id === transactionSupplierId
+    );
+  };
 
   const handleUpdateStatusSedangDikirim = async (transactionId) => {
     console.log(transactionId);
@@ -70,18 +78,25 @@ const BarangMasukPage = () => {
                                 type="button"
                                 className="btn btn-primary mx-1"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modalPreview"
+                                data-bs-target="#modalBarangMasuk"
+                                onClick={() => {
+                                  const data = findTransactionSupplier(
+                                    transaction.id
+                                  );
+                                  setTransactionSupplier(data);
+                                }}
                               >
                                 <i className="bi bi-pencil-square"></i>
                               </button>
                               <button
                                 type="button"
                                 className="btn btn-success mx-1"
-                                
+                                onClick={()=>{
+                                  handleUpdateStatusSedangDikirim(transaction.id)
+                                }}
                               >
                                 <ImCheckmark />
                               </button>
-
                             </td>
                           </tr>
                         </>
@@ -95,8 +110,7 @@ const BarangMasukPage = () => {
             </div>
           </div>
         </div>
-
-        <Footer />
+        <ModalBarangMasuk transactionSupplier={transactionSupplier} />
       </main>
     </>
   );

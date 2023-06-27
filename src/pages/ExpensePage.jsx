@@ -59,7 +59,6 @@ const ExpensePage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </main>
       <HelmetProvider>
         <Helmet>

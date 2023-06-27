@@ -107,18 +107,18 @@ const PricePage = () => {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-12">
-            {/* <TableProducts
+        {/* <div className="row"> */}
+        {/* <div className="col-12"> */}
+        {/* <TableProducts
               product={product}
               setProduct={setProduct}
               products={products}
               handleUpdateProduct={handleUpdateProduct}
               handleDeleteProduct={handleDeleteProduct}
             /> */}
-          </div>
-        </div>
-      
+        {/* </div> */}
+        {/* </div> */}
+
         {/* Modal Products */}
         {/* <ModalProductAdd
           product={product}
@@ -127,7 +127,35 @@ const PricePage = () => {
           suppliers={suppliers}
         /> */}
 
-        <Footer />
+        <div className="table-responsive">
+          <table className="table table-bordered" style={{ width: "100%" }}>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Harga eceran</th>
+                <th>harga grosir</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Rp5.000,00</td>
+                <td>Rp3.000,00</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalPreview"
+                  >
+                    <i className="bi bi-pencil-square"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </main>
     </>
   );

@@ -39,7 +39,7 @@ const SalesPage = () => {
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-          <h3 className="card-header">Transaksi pembeli</h3>
+          <h3 className="card-header">Transaksi penjualan</h3>
           <div className="card-body">
             <div className="table-responsive">
               <table className="table table-striped" style={{ width: "100%" }}>
@@ -176,7 +176,6 @@ const SalesPage = () => {
           </div>
         </div>
         <ModalSales transactionCustomer={transactionCustomer} />
-        <Footer />
       </main>
     </>
   );

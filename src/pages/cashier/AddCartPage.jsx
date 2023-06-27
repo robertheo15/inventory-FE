@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNavigation from "../../components/Navigation/TopNavigation";
-import Footer from "../../components/navigation/Footer";
 import ModalCart from "../../components/Modals/ModalCart";
-import ModalPreview from "../../components/Modals/ModalPreview";
 import TableTransactions from "../../components/Tables/TableTransactions";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { createTransactions } from "../../utils/api/transaction";
 import useCustomers from "../../hooks/useCustomers";
 import rupiah from "../../utils/helper";
 import SideBar from "../../components/navigation/SideBar";
+import title from "../../utils/const/title";
 
 const transactionParentModel = {
   customer: "",
@@ -21,26 +20,26 @@ const transactionParentModel = {
 const transactionChildren = {
   customer: "",
   status: "sedang dikemas",
-  deliveryOption: "",
+  methode: "",
   priceType: "",
   type: "child",
-  transactionDetails: [],
+  transaction_details: [],
 };
 
-const newTransactionDetails = {
-  transactionDetails: [],
-  deliveryOption: "",
+const newTransaction_details = {
+  transaction_details: [],
+  methode: "",
   priceType: "",
-  totalPrice: 0,
+  totalPrice: parseFloat(),
 };
 
 const newTransactionDetail = {
   product: {},
   productVariant: {},
-  qty: 0,
-  deliveryOption: "",
+  qty: parseFloat(),
+  methode: "",
   priceType: "",
-  price: 0,
+  price: parseFloat(),
 };
 
 const AddCartPage = () => {
@@ -50,29 +49,33 @@ const AddCartPage = () => {
     transactionParentModel
   );
 
+  useEffect(() => {
+    document.title = title.cashier;
+  }, []);
+
   const [transactionChild, setTransactionChild] = useState(transactionChildren);
 
   const [transactionDetail, setTransactionDetail] =
     useState(newTransactionDetail);
-  const [transactionDetails, setTransactionDetails] = useState([]);
+  const [transaction_details, setTransaction_details] = useState([]);
 
   const findCustomers = (customerId) => {
     return customers.data.find((customer) => customer.id === customerId);
   };
 
-  const handleCreateTransaction = (transaction) => {
+  const handleCreateTransaction = async (transaction) => {
     if (transaction.children.length == 0) {
       alert("Isi terlebih dahulu produk yang ingin dipesan!");
     }
-    // const transactionRequest = {
-    //   c_id: transaction.customer.id,
-    //   status: "sedang dikemas",
-    //   type: "parent",
-    //   children: transaction.children,
-    // };
-    // console.log(transactionRequest);
+    const transactionRequest = {
+      invoice: `KRSX-${Date.now()}`,
+      c_id: transaction.customer.id,
+      status: "sedang dikemas",
+      type: "parent",
+      children: transaction.children,
+    };
 
-    // const response = createTransactions(transatransactionRequestctionParent);
+    const response = await createTransactions(transactionRequest);
     navigate("/invoices", { state: transactionParent });
   };
 
@@ -91,7 +94,6 @@ const AddCartPage = () => {
     (acc, child) => acc + child.totalPrice,
     0
   );
-  console.log(transactionParent);
 
   return (
     <>
@@ -102,8 +104,8 @@ const AddCartPage = () => {
         <main>
           <section className="vh-100 d-flex align-items-start justify-content-center my-5">
             <div className="container">
-            <h3>Kasir</h3>
-            <hr/>
+              <h3>Kasir</h3>
+              <hr />
               <div className="row align-items-start justify-content-start">
                 <div className="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-left flex">
                   <div className="mb-3 row">
@@ -126,6 +128,7 @@ const AddCartPage = () => {
                           setTransactionChild({
                             ...transactionChild,
                             customer: customer,
+                            c_id: e.target.value,
                           });
                         }}
                       >
@@ -140,28 +143,6 @@ const AddCartPage = () => {
                       </select>
                     </div>
                   </div>
-                  {/* <div className="mb-3 row">
-                  
-                    <label htmlFor="inputName" className="col-sm-2 col-form-label">Name:</label>
-                    <div className="col-sm-10">
-                    <input type="text" className="form-control" id="inputName" value={transactionParentState.c_id} 
-                    onChange={e => {
-                      setTransactionParent({ ...transactionParentState, c_id: e.target.value });
-                    }} />
-                    </div>
-                </div>
-                <div className="mb-3 row">
-                    <label htmlFor="inputNumber" className="col-sm-2 col-form-label">Number:</label>
-                    <div className="col-sm-10">
-                    <input type="number" className="form-control" id="inputNumber"/>
-                    </div>
-                </div>
-                <div className="mb-3 row">
-                    <label htmlFor="inputAddress" className="col-sm-2 col-form-label">Address:</label>
-                    <div className="col-sm-10">
-                    <input type="text" className="form-control" id="inputAddress"/>
-                    </div>
-                </div> */}
                   <div className="mt-5 row">
                     {transactionParent.customer == "" ||
                     transactionParent.customer == undefined ? (
@@ -199,6 +180,7 @@ const AddCartPage = () => {
                     className="btn btn-primary"
                     onClick={() => {
                       handleCreateTransaction(transactionParent);
+                      // console.log(transactionParent);
                     }}
                   >
                     checkout
@@ -221,12 +203,13 @@ const AddCartPage = () => {
 
               {/* Modals Cart */}
               <ModalCart
+                customerId={transactionParent.customer.id}
                 transactionParent={transactionParent}
                 setTransactionParent={setTransactionParent}
                 transactionChild={transactionChild}
                 setTransactionChild={setTransactionChild}
-                transactionDetails={transactionDetails}
-                setTransactionDetails={setTransactionDetails}
+                transaction_details={transaction_details}
+                setTransaction_details={setTransaction_details}
                 transactionDetail={transactionDetail}
                 setTransactionDetail={setTransactionDetail}
               />
@@ -238,8 +221,6 @@ const AddCartPage = () => {
             </div>
           </section>
         </main>
-
-        <Footer />
       </main>
       <HelmetProvider>
         <Helmet>

@@ -61,7 +61,6 @@ const CashierPage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </main>
       <HelmetProvider>
         <Helmet>
