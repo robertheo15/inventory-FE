@@ -25,7 +25,7 @@ const getUserDetails = async (token) => {
 
 const register = async (requestBody, token) => {
   try {
-    const response = await axios.post(`${BASE_URL}/customers`, requestBody, {
+    const response = await axios.post(`${BASE_URL}/admins/registers`, requestBody, {
       headers: {
         authorization: `Bearer ${token}`,
       },

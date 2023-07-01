@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../../components/navigation/SideBar";
 import TopNavigation from "../../components/Navigation/TopNavigation";
 import TableRoleManagement from "../../components/tables/setting/TableRoleManagement";
 import ModalAddAdmin from "../../components/modals/setting/ModalAddAdmin";
 import Footer from "../../components/navigation/Footer";
 
-
 const RoleManagementPage = () => {
+  const [user, setUser] = useState({});
+
   return (
     <>
       <SideBar />
       <main className="content">
         <TopNavigation />
         <div className="card border-0 shadow">
-        <h3 className="card-header">Manajemen karyawan</h3>
+          <h3 className="card-header">Manajemen karyawan</h3>
           <div className="card-header d-flex justify-content-between">
             <button
               type="button"
