@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNavigation from "../../components/navigation/TopNavigation";
-import ModalCart from "../../components/Modals/ModalCart";
+import ModalCart from "../../components/modals/ModalCart";
 import TableTransactions from "../../components/Tables/TableTransactions";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { createTransactions } from "../../utils/api/transaction";
