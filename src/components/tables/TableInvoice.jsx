@@ -10,6 +10,8 @@ const TableInvoice = ({ transactionChildren }) => {
             <div key={key}>
               <h6 key={key}>
                 <b>{child.invoice}</b>
+                <br/>
+                <b>{child.methode}</b>
               </h6>
               <div className="table-responsive table-bordered">
                 <table
@@ -25,7 +27,7 @@ const TableInvoice = ({ transactionChildren }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {child?.transactionDetails.map((detail) => {
+                    {child?.transaction_details?.map((detail) => {
                       return (
                         <tr key={key}>
                           <td>{`${detail?.product.name} - ${detail.productVariant.name} ${detail.productVariant.colour}`}</td>

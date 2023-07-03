@@ -12,6 +12,7 @@ const RouteApp = () => {
       const userData = localStorage.getItem("userData");
       const Token = localStorage.getItem("userToken");
       const dataUser = JSON.parse(userData);
+
       if (dataUser !== null) {
         setResponseAuth(dataUser);
       }
@@ -28,11 +29,7 @@ const RouteApp = () => {
     getToken();
   }, []);
 
-  return token ? (
-    <RoutesPage  />
-  ) : (
-    <RoutesLogin />
-  );
+  return token ? <RoutesPage /> : <RoutesLogin />;
 };
 
 export default RouteApp;

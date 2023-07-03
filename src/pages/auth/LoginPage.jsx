@@ -10,26 +10,28 @@ const LoginPage = () => {
 
   const { setResponseAuth, setToken } = useContext(AuthContext);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const requestBody ={
+    const requestBody = {
       email: email,
       password: password,
-    }
-    console.log(requestBody);
-    // const response = await login(requestBody);
-    
+    };
+
     login(requestBody)
       .then(async (res) => {
         if (res.error) {
           alert("Email atau Password Anda Salah");
         } else {
           const user = await getUserDetails(res.data);
-          setResponseAuth(res);
-          setToken(res.data);
-          localStorage.setItem("userToken", res.data);
-          localStorage.setItem("userData", JSON.stringify(user));
+          if (user.data.active) {
+            setResponseAuth(res);
+            setToken(res.data);
+            localStorage.setItem("userToken", res.data);
+            localStorage.setItem("userData", JSON.stringify(user));
+          } else {
+            alert("User not active!")
+          }
         }
       })
       .catch((err) => {
@@ -50,10 +52,10 @@ const LoginPage = () => {
                 <h1 className="mb-0 h3">Masuk ke Aplikasi Inventory</h1>
               </div>
 
-              <LoginForm 
-                  handleLogin={handleLogin}
-                  setEmail={setEmail}
-                  setPassword={setPassword}
+              <LoginForm
+                handleLogin={handleLogin}
+                setEmail={setEmail}
+                setPassword={setPassword}
               />
             </div>
           </div>

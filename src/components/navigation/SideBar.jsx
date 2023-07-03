@@ -13,7 +13,6 @@ const SideBar = () => {
   const userData = localStorage.getItem("userData");
   const { data } = JSON.parse(userData);
 
-  console.log(data.role);
   if (data.role === 1) {
     return (
       <>

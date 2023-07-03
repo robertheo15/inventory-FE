@@ -321,7 +321,7 @@ const ModalCart = ({
                     ],
                   }));
                   setTransaction_details([]);
-                  setTransactionDetail({});
+                  // setTransactionDetail({});
                 }
               }}
             >

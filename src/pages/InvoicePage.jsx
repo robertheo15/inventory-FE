@@ -8,6 +8,7 @@ import Footer from "../components/navigation/Footer";
 import TableInvoice from "../components/tables/TableInvoice";
 import title from "../utils/const/title";
 import { ImPrinter } from "react-icons/im";
+import rupiah from "../utils/helper";
 
 const InvoicePage = () => {
   const location = useLocation();
@@ -28,7 +29,11 @@ const InvoicePage = () => {
   if (!transactionParent) {
     return null;
   }
+  let total_price = 0;
 
+  for (const transaction of transactionParent?.children) {
+    total_price += transaction.totalPrice;
+  }
   return (
     <>
       <SideBar />
@@ -53,6 +58,11 @@ const InvoicePage = () => {
                 <b>Alamat: </b>
               </h6>
               <h6 className="">{transactionParent?.customer.address}</h6>
+            </div>
+            <div className="mb-2 d-flex">
+              <h6 className="me-2">
+                <b>Total Price: {rupiah(total_price)}</b>
+              </h6>
             </div>
             <button type="button" className="btn btn-success col-5">
               <ImPrinter />

@@ -1,3 +1,3 @@
-const BASE_URL = 'http://34.101.164.72'
+const BASE_URL = 'http://localhost:9070'
 
 export default BASE_URL;

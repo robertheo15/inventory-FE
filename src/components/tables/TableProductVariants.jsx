@@ -49,7 +49,6 @@ const TableProductVariants = ({
                         type="submit"
                         className="btn btn-danger mx-1"
                         onClick={() => {
-                          console.log(productVariant.id)
                           handleDeleteProductVariant(productVariant.id);
                         }}
                       >

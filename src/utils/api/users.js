@@ -54,6 +54,26 @@ const getUsers = async () => {
   }
 };
 
+const updateActiveUser = async (email, active) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/admins/actives`,
+      {
+        email: email,
+        active: active,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
 const changePassword = async (requestBody, token) => {
   try {
     const response = await axios.post(`${BASE_URL}/customers`, requestBody, {
@@ -83,6 +103,7 @@ const changeUserData = async (requestBody, token) => {
 export {
   login,
   getUserDetails,
+  updateActiveUser,
   getUsers,
   register,
   changePassword,

@@ -1,7 +1,14 @@
 import React from "react";
 import getRole from "../../../utils/const/role";
 import { ImStop2, ImPlay3 } from "react-icons/im";
+import { updateActiveUser } from "../../../utils/api/users";
 const TableRoleManagement = ({ users }) => {
+  
+  const handleUpdateActiveUser = async (email, active) => {
+    const response = await updateActiveUser(email, active);
+    console.log(response);
+  }
+
   return (
     <div className="table-responsive">
       <table
@@ -35,7 +42,11 @@ const TableRoleManagement = ({ users }) => {
                     <button
                       type="submit"
                       className="btn btn-danger"
-                      onClick={() => confirm("Are you sure?")}
+                      onClick={() => {
+                          confirm("Are you sure?")
+                          handleUpdateActiveUser(user.email, user.active);
+                        }
+                      }
                     >
                       <ImStop2 />
                     </button>
@@ -43,8 +54,11 @@ const TableRoleManagement = ({ users }) => {
                     <button
                       type="submit"
                       className="btn btn-success"
-                      onClick={() => confirm("Are you sure?")}
-                    >
+                      onClick={() => {
+                          confirm("Are you sure?")
+                          handleUpdateActiveUser(user.email, user.active);
+                        }
+                      }                    >
                       <ImPlay3 />
                     </button>
                   )}

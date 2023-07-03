@@ -22,7 +22,6 @@ import { AuthContext } from "../data/Authentification";
 const RoutesPage = () => {
   const { responseAuth } = useContext(AuthContext);
   const { data } = JSON.parse(localStorage.getItem("userData"));
-  console.log(data.role);
   return (
     <Routes>
       {data.role === 1 ? (

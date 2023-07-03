@@ -5,7 +5,6 @@ const TableTransactions = ({
   transactionParent,
   handleRemoveTransactionChildren,
 }) => {
-  // console.log(transactionParent.children);
   return (
     <>
       <div className="table-responsive">
@@ -26,7 +25,7 @@ const TableTransactions = ({
                     <tr key={key}>
                       <th scope="row">{key + 1}</th>
                       <td>{child.invoice}</td>
-                      <td>{child.deliveryOption}</td>
+                      <td>{child.methode}</td>
                       <td>{rupiah(child.totalPrice)}</td>
                       <td>
                         <button
