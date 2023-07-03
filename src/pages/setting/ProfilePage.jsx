@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import title from "../../utils/const/title";
 import SideBar from "../../components/navigation/SideBar";
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import TopNavigation from "../../components/navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import ModalChangePassword from "../../components/modals/setting/ModalChangePassword";
 

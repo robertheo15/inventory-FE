@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
 
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import TopNavigation from "../../components/navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import SideBar from "../../components/navigation/SideBar";
 import title from "../../utils/const/title";

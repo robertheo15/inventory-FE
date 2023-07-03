@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import SideBar from "../../components/navigation/SideBar";
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import SideBar from "../../components/navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import rupiah from "../../utils/helper";
 import ModalCartSupplier from "../../components/modals/orders/ModalCartSupplier";

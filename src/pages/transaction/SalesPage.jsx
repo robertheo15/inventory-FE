@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../components/navigation/SideBar";
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import TopNavigation from "../../components/navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import title from "../../utils/const/title";
 import useTransactions from "../../hooks/useTransactions";

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SideBar from '../components/navigation/SideBar';
-import TopNavigation from '../components/Navigation/TopNavigation';
+import TopNavigation from '../components/navigation/TopNavigation';
 import Footer from '../components/navigation/Footer';
 import {FcMoneyTransfer} from 'react-icons/fc';
 import {MdPayments} from 'react-icons/md';

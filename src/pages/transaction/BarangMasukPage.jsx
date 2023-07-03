@@ -7,7 +7,7 @@ import { ImArrowDown2, ImCheckmark } from "react-icons/im";
 import { updateStatusSedangDikirim } from "../../utils/api/transaction";
 import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
 import ModalBarangMasuk from "../../components/modals/transaction/ModalBarangMasuk";
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import TopNavigation from "../../components/navigation/TopNavigation";
 
 const requestBody = {
   status: "sedang dikirim",
