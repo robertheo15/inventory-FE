@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import TopNavigation from "../components/Navigation/TopNavigation";
 import Footer from "../components/navigation/Footer";
 import SideBar from "../components/navigation/SideBar";
-import TopNavigation from "../components/Navigation/TopNavigation";
 import title from "../utils/const/title";
 
 const HomePage = () => {
@@ -26,7 +26,6 @@ const HomePage = () => {
                     <span className="text-danger">{data.full_name}</span>
                   </h1>
                 </div>
-                
               </div>
             </div>
           </section>
