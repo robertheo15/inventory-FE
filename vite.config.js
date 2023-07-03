@@ -8,7 +8,7 @@ import path from 'path';
 // })
 
 export default defineConfig({
-  root: path.join(__dirname, 'src'),
+  root: path.join(__dirname),
   plugins: [react()],
   build:{
       outDir: "build"
