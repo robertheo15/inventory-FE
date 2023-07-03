@@ -3,12 +3,11 @@ import { useSearchParams, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import SideBar from "../components/navigation/SideBar";
-import TopNavigation from "../components/Navigation/TopNavigation";
+import TopNavigation from "../components/navigation/TopNavigation";
 import Footer from "../components/navigation/Footer";
 import TableInvoice from "../components/tables/TableInvoice";
 import title from "../utils/const/title";
 import { ImPrinter } from "react-icons/im";
-
 
 const InvoicePage = () => {
   const location = useLocation();
@@ -24,7 +23,7 @@ const InvoicePage = () => {
 
   useEffect(() => {
     document.title = title.invoices;
-    }, []);
+  }, []);
 
   if (!transactionParent) {
     return null;
@@ -56,8 +55,8 @@ const InvoicePage = () => {
               <h6 className="">{transactionParent?.customer.address}</h6>
             </div>
             <button type="button" className="btn btn-success col-5">
-          <ImPrinter />
-        </button>
+              <ImPrinter />
+            </button>
           </div>
         </div>
         <div className="row">
