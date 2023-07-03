@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
-import { getTransactionsSupplier } from "../utils/api/transactionSupplier";
+import { getUsers } from "../utils/api/users";
 
-const useTransactionsSuppliers = (requestBody) => {
-  const [transactionSuppliers, setTransactionSuppliers] = useState([]);
+const useUsers = () => {
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getTransactionsSupplier(requestBody);
-      setTransactionSuppliers(data);
+      const data = await getUsers();
+      setUsers(data);
     };
     fetchData();
   }, []);
-  return { transactionSuppliers };
+  return { users };
 };
 
-export default useTransactionsSuppliers;
+export default useUsers;

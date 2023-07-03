@@ -1,5 +1,6 @@
 import axios from "axios";
 import BASE_URL from "../const/api-const";
+import token from "../const/token";
 
 const login = async (requestBody) => {
   try {
@@ -23,9 +24,26 @@ const getUserDetails = async (token) => {
   }
 };
 
-const register = async (requestBody, token) => {
+const register = async (requestBody) => {
   try {
-    const response = await axios.post(`${BASE_URL}/admins/registers`, requestBody, {
+    const response = await axios.post(
+      `${BASE_URL}/admins/registers`,
+      requestBody,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: true, data: null };
+  }
+};
+
+const getUsers = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/admins/users`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -62,4 +80,11 @@ const changeUserData = async (requestBody, token) => {
   }
 };
 
-export { login, getUserDetails, register, changePassword, changeUserData };
+export {
+  login,
+  getUserDetails,
+  getUsers,
+  register,
+  changePassword,
+  changeUserData,
+};

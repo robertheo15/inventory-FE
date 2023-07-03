@@ -1,6 +1,7 @@
 import React from "react";
-
-const TableRoleManagement = () => {
+import getRole from "../../../utils/const/role";
+import { ImStop2, ImPlay3 } from "react-icons/im";
+const TableRoleManagement = ({ users }) => {
   return (
     <div className="table-responsive">
       <table
@@ -14,34 +15,43 @@ const TableRoleManagement = () => {
             <th>Full Name</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Address</th>
             <th>Role</th>
-            <th>Updated By</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>asd</td>
-            <td>asd</td>
-            <td>asd</td>
-            <td>
-              <span className="badge rounded-pill bg-primary">Admin</span>
-            </td>
-            <td>asd</td>
-            <td>
-              <button
-                type="submit"
-                className="btn btn-danger"
-                onClick={() => confirm("Are you sure?")}
-              >
-                <i className="bi bi-trash-fill"></i>
-              </button>
-              {/* <button type="submit" className="btn btn-danger mb-1">
-            <i className="bi bi-play-circle-fill"></i>
-          </button> */}
-            </td>
-          </tr>
+          {users?.map((user, key) => {
+            return (
+              <tr key={key}>
+                <td>{key + 1}</td>
+                <td>{user.full_name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone_number}</td>
+                <td>{user.address}</td>
+                <td>{getRole(user.role)}</td>
+                <td>
+                  {user.active === 1 ? (
+                    <button
+                      type="submit"
+                      className="btn btn-danger"
+                      onClick={() => confirm("Are you sure?")}
+                    >
+                      <ImStop2 />
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      onClick={() => confirm("Are you sure?")}
+                    >
+                      <ImPlay3 />
+                    </button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

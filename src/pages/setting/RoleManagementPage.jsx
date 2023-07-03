@@ -3,11 +3,10 @@ import SideBar from "../../components/navigation/SideBar";
 import TopNavigation from "../../components/Navigation/TopNavigation";
 import TableRoleManagement from "../../components/tables/setting/TableRoleManagement";
 import ModalAddAdmin from "../../components/modals/setting/ModalAddAdmin";
-import Footer from "../../components/navigation/Footer";
+import useUsers from "../../hooks/useUsers";
 
 const RoleManagementPage = () => {
-  const [user, setUser] = useState({});
-
+  const { users } = useUsers({});
   return (
     <>
       <SideBar />
@@ -28,7 +27,7 @@ const RoleManagementPage = () => {
           </div>
 
           <div className="card-body">
-            <TableRoleManagement />
+            <TableRoleManagement users={users.data}/>
           </div>
         </div>
 

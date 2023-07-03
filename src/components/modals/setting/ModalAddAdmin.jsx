@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { register } from "../../../utils/api/users";
 
 const ModalAddAdmin = () => {
+  const [user, setUser] = useState({});
+  
+  const handleCreateUser = async () => {
+    const response = await register(user);
+    if (response.error) {
+      alert("Tidak berhasil!")
+    } else {
+      alert(response.message)
+    }
+  }; 
+
   return (
     <div
       className="modal fade"
@@ -30,70 +42,90 @@ const ModalAddAdmin = () => {
             </button>
           </div>
           <div className="modal-body">
-            <form
-              action='<?= base_url("admin/management/addadmin"); ?>'
-              method="POST"
+            <div className="mb-3">
+              <label htmlFor="fullname">Full name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="fullname"
+                name="full_name"
+                onChange={(e) => {
+                  setUser({ ...user, full_name: e.target.value });
+                }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                onChange={(e) => {
+                  setUser({ ...user, email: e.target.value });
+                }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="number"
+                className="form-control"
+                id="phone"
+                name="phone"
+                onChange={(e) => {
+                  setUser({ ...user, phone_number: e.target.value });
+                }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="address">Address</label>
+              <input
+                type="text"
+                className="form-control"
+                id="address"
+                name="address"
+                onChange={(e) => {
+                  setUser({ ...user, address: e.target.value });
+                }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                onChange={(e) => {
+                  setUser({ ...user, password: e.target.value });
+                }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="role">Role</label>
+              <select
+                className="form-select"
+                id="role"
+                name="select_role"
+                onChange={(e) => {
+                  setUser({ ...user, role: parseFloat(e.target.value) });
+                }}
+              >
+                <option value="2" defaultValue={"selected"}>
+                  Admin
+                </option>
+                <option value="3">Kurir</option>
+              </select>
+            </div>
+            <button
+              button
+              type="submit"
+              className="btn btn-success mt-3"
+              onClick={() => {handleCreateUser();}}
             >
-              <div className="mb-3">
-                <label htmlFor="fullname">FullName</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="fullname"
-                  name="full_name"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="example@gmail.com"
-                  name="email"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="phone"
-                  name="phone"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="address">Address</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="address"
-                  name="address"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="role">Role</label>
-                <select className="form-select" id="role" name="select_role">
-                  {/* <option value="1">Super Admin</option> */}
-                  <option value="1" defaultValue={"selected"}>
-                    Admin
-                  </option>
-                  <option value="2">Kurir</option>
-                </select>
-              </div>
-              <button button type="submit" className="btn btn-success mt-3">
-                Tambah
-              </button>
-            </form>
+              Tambah
+            </button>
           </div>
         </div>
       </div>
