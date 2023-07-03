@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../components/navigation/SideBar";
-import TopNavigation from "../../components/Navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import title from "../../utils/const/title";
 import useTransactions from "../../hooks/useTransactions";
@@ -8,6 +7,7 @@ import { ImArrowDown2, ImCheckmark } from "react-icons/im";
 import { updateStatusSedangDikirim } from "../../utils/api/transaction";
 import useTransactionsSuppliers from "../../hooks/useTransactionsSuppliers";
 import ModalBarangMasuk from "../../components/modals/transaction/ModalBarangMasuk";
+import TopNavigation from "../../components/Navigation/TopNavigation";
 
 const requestBody = {
   status: "sedang dikirim",
