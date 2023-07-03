@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SideBar from "../../components/navigation/SideBar";
-import TopNavigation from "../../components/Navigation/TopNavigation";
+import TopNavigation from "../../components/navigation/TopNavigation";
 import Footer from "../../components/navigation/Footer";
 import TableProducts from "../../components/tables/TableProducts";
 import ModalProducts from "../../components/modals/ModalProductAdd";
